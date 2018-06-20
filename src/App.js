@@ -1,114 +1,127 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Products from './components/Products';
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import Collections from './components/Collections';
 import Cart from './components/Cart';
 
 class App extends Component {
-  constructor() {
-    super();
+    constructor() {
+        super();
 
-    this.state = {
-      isCartOpen: false,
-      checkout: { lineItems: [] },
-      products: [],
-      shop: {}
-    };
+        this.state = {
+            isCartOpen: false,
+            checkout: {lineItems: []},
+            products: [],
+            collections: [],
+            shop: {}
+        };
 
-    this.handleCartClose = this.handleCartClose.bind(this);
-    this.addVariantToCart = this.addVariantToCart.bind(this);
-    this.updateQuantityInCart = this.updateQuantityInCart.bind(this);
-    this.removeLineItemInCart = this.removeLineItemInCart.bind(this);
-  }
+        this.handleCartClose = this.handleCartClose.bind(this);
+        this.addVariantToCart = this.addVariantToCart.bind(this);
+        this.updateQuantityInCart = this.updateQuantityInCart.bind(this);
+        this.removeLineItemInCart = this.removeLineItemInCart.bind(this);
+    }
 
-  componentWillMount() {
-    this.props.client.createCheckout({}).then((res) => {
-      this.setState({
-        checkout: res,
-      });
-    });
+    componentWillMount() {
+        this.props.client.createCheckout({}).then(res => {
+            this.setState({
+                checkout: res
+            });
+        });
 
-    this.props.client.fetchAllProducts().then((res) => {
-      this.setState({
-        products: res,
-      });
-    });
+        // this.props.client.fetchAllProducts().then(res => {
+        //     this.setState({
+        //         products: res
+        //     });
+        // });
 
-    this.props.client.fetchShopInfo().then((res) => {
-      this.setState({
-        shop: res,
-      });
-    });
-  }
+        this.props.client.fetchAllCollections().then(res => {
+            this.setState({
+                collections: res
+            });
+        });
 
-  addVariantToCart(variantId, quantity){
-    this.setState({
-      isCartOpen: true,
-    });
+        this.props.client.fetchShopInfo().then(res => {
+            this.setState({
+                shop: res
+            });
+        });
+    }
 
-    const lineItemsToAdd = [{variantId, quantity: parseInt(quantity, 10)}]
-    const checkoutId = this.state.checkout.id
+    addVariantToCart(variantId, quantity) {
+        this.setState({
+            isCartOpen: true
+        });
 
-    return this.props.client.addLineItems(checkoutId, lineItemsToAdd).then(res => {
-      this.setState({
-        checkout: res,
-      });
-    });
-  }
+        const lineItemsToAdd = [{variantId, quantity: parseInt(quantity, 10)}];
+        const checkoutId = this.state.checkout.id;
 
-  updateQuantityInCart(lineItemId, quantity) {
-    const checkoutId = this.state.checkout.id
-    const lineItemsToUpdate = [{id: lineItemId, quantity: parseInt(quantity, 10)}]
+        return this.props.client.addLineItems(checkoutId, lineItemsToAdd).then(res => {
+            this.setState({
+                checkout: res
+            });
+        });
+    }
 
-    return this.props.client.updateLineItems(checkoutId, lineItemsToUpdate).then(res => {
-      this.setState({
-        checkout: res,
-      });
-    });
-  }
+    updateQuantityInCart(lineItemId, quantity) {
+        const checkoutId = this.state.checkout.id;
+        const lineItemsToUpdate = [{id: lineItemId, quantity: parseInt(quantity, 10)}];
 
-  removeLineItemInCart(lineItemId) {
-    const checkoutId = this.state.checkout.id
+        return this.props.client.updateLineItems(checkoutId, lineItemsToUpdate).then(res => {
+            this.setState({
+                checkout: res
+            });
+        });
+    }
 
-    return this.props.client.removeLineItems(checkoutId, [lineItemId]).then(res => {
-      this.setState({
-        checkout: res,
-      });
-    });
-  }
+    removeLineItemInCart(lineItemId) {
+        const checkoutId = this.state.checkout.id;
 
-  handleCartClose() {
-    this.setState({
-      isCartOpen: false,
-    });
-  }
+        return this.props.client.removeLineItems(checkoutId, [lineItemId]).then(res => {
+            this.setState({
+                checkout: res
+            });
+        });
+    }
 
-  render() {
-    return (
-      <div className="App">
-        <header className="App__header">
-          {!this.state.isCartOpen &&
-            <div className="App__view-cart-wrapper">
-              <button className="App__view-cart" onClick={()=> this.setState({isCartOpen: true})}>Cart</button>
-            </div>
-          }
-          <div className="App__title">
-            <h1>{this.state.shop.name}: React Example</h1>
-            <h2>{this.state.shop.description}</h2>
-          </div>
-        </header>
-        <Products
-          products={this.state.products}
-          addVariantToCart={this.addVariantToCart}
-        />
-        <Cart
-          checkout={this.state.checkout}
-          isCartOpen={this.state.isCartOpen}
-          handleCartClose={this.handleCartClose}
-          updateQuantityInCart={this.updateQuantityInCart}
-          removeLineItemInCart={this.removeLineItemInCart}
-        />
-      </div>
-    );
-  }
+    handleCartClose() {
+        this.setState({
+            isCartOpen: false
+        });
+    }
+
+    render() {
+        return (
+            <Router>
+                <div>
+                    <header className="App__header">
+                        {!this.state.isCartOpen && (
+                            <div className="App__view-cart-wrapper">
+                                <button className="App__view-cart" onClick={() => this.setState({isCartOpen: true})}>
+                                    Cart
+                                </button>
+                            </div>
+                        )}
+                        <div className="App__title">
+                            <h1>{this.state.shop.name}</h1>
+                            <h2>{this.state.shop.description}</h2>
+                            <Route exact path="/collection" component={Collections} />
+                            <Route exact path="/" component={Products} />
+                        </div>
+                    </header>
+                    {/* <Collections collections={this.state.collections} /> */}
+                    {/* <Products products={this.state.products} addVariantToCart={this.addVariantToCart} /> */}
+                    <Cart
+                        checkout={this.state.checkout}
+                        isCartOpen={this.state.isCartOpen}
+                        handleCartClose={this.handleCartClose}
+                        updateQuantityInCart={this.updateQuantityInCart}
+                        removeLineItemInCart={this.removeLineItemInCart}
+                    />
+                </div>
+            </Router>
+        );
+    }
 }
 
 export default App;
