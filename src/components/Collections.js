@@ -8,7 +8,7 @@ const CollectionList = ({collections, setCollection}) => (
   console.log(collections),
   (
     <ul className="list pl0 archive mv0 pad-bottom">
-      {/* {collections.map(collection => (
+      {collections.map(collection => (
         <li className="ph3 ph4-l">
           <div id={collection.id} slug={collection.handle}>
             <div className="pv3 bb b--light-gray flex justify-between items-center">
@@ -16,7 +16,7 @@ const CollectionList = ({collections, setCollection}) => (
             </div>
           </div>
         </li>
-      ))} */}
+      ))}
     </ul>
   )
 );
