@@ -1,27 +1,15 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 // import Client from 'shopify-buy';
 
-class Collection extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {};
-    }
-
-    componentWillMount() {
-        this.setState({
-            handle: this.props.collection.handle,
-            image: this.props.collection.image.src
-        });
-    }
-
-    render() {
-        return (
-            <div className="Collection" handle={this.state.handle}>
-                {this.state.handle}
-                <img src={this.state.image} />
-            </div>
-        );
-    }
-}
+const Collection = ({title, handle, id, ...props}) => (
+  <Link to={`/collection/${handle}`} className="absolute absolute--fill z-3">
+    <div id={id}>
+      <div className="pv3 bb b--light-gray flex justify-between items-center">
+        <h1 className="f6 mv0 black ttu biryani pr2"> Collection : {title}</h1>
+      </div>
+    </div>
+  </Link>
+);
 
 export default Collection;
