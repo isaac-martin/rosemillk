@@ -1,22 +1,27 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import Collection from './Collection';
 
-class Collections extends Component {
-    // componentWillMount() {
-    //     this.props.client.fetchAllCollections().then(res => {
-    //         this.setState({
-    //             collections: res
-    //         });
-    //     });
-    // }
-    render() {
-        // let collections = this.props.collections.map(collection => {
-        //     return <Collection slug={collection.handle} collection={collection} />;
-        // });
+import actions from '.././store/actions';
 
-        // return <div className="Collections-wrapper">{collections}</div>;
-        return <div className="Collections-wrapper">test</div>;
-    }
-}
+const CollectionList = ({collections, setCollection}) => (
+  console.log(collections),
+  (
+    <ul className="list pl0 archive mv0 pad-bottom">
+      {collections.map(collection => (
+        <li className="ph3 ph4-l">
+          <div id={collection.id} slug={collection.handle}>
+            <div className="pv3 bb b--light-gray flex justify-between items-center">
+              <h1 className="f6 mv0 black ttu biryani pr2">{collection.title}</h1>
+            </div>
+          </div>
+        </li>
+      ))}
+    </ul>
+  )
+);
 
-export default Collections;
+export default connect(
+  state => state,
+  actions
+)(CollectionList);
