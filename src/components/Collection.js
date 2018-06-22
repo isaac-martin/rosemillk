@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
+import actions from '.././store/actions';
 // import Client from 'shopify-buy';
 
 const Collection = ({attrs: {title, handle, id}, ...props}) => (
@@ -12,4 +14,7 @@ const Collection = ({attrs: {title, handle, id}, ...props}) => (
     </Link>
 );
 
-export default Collection;
+export default connect(
+    state => state,
+    actions
+)(Collection);

@@ -28,10 +28,6 @@ class App extends Component {
         // });
 
         this.props.client.fetchAllCollections().then(res => {
-            // this.setState({
-            //   collections: res
-            // });
-
             setCollection(res);
         });
 

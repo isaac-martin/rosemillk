@@ -8,7 +8,7 @@ import actions from '.././store/actions';
 class CollectionArchive extends Component {
     componentDidMount() {
         const {setProducts, setCollectionID, attrs} = this.props;
-        setCollectionID(attrs);
+        setCollectionID(attrs.handle.value);
     }
 
     render() {
