@@ -2,6 +2,7 @@ const initialState = {
     isCartOpen: false,
     checkout: {lineItems: []},
     products: [],
+    // attrs: [],
     collections: [],
     collectionID: '',
     shop: {}
