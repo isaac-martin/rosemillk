@@ -8,15 +8,11 @@ import actions from '.././store/actions';
 class CollectionArchive extends Component {
     componentDidMount() {
         const {setProducts, setCollectionID, attrs} = this.props;
-        setCollectionID((attrs: id.value));
-        // this.props.client.fetchAllProducts().then(res => {
-        //     const {setProducts, id} = this.props;
-        //     setProducts([]);
-        // });
+        setCollectionID(attrs);
     }
 
     render() {
-        return <div className="p3 ph4-l pad-bottom">Test</div>;
+        return <div className="p3 ph4-l pad-bottom">Collection Title : </div>;
     }
 }
 
