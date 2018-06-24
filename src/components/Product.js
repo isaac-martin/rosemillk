@@ -2,68 +2,73 @@ import React, {Component} from 'react';
 import Client from 'shopify-buy';
 
 class Product extends Component {
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
 
-        this.state = {};
+    this.state = {};
 
-        this.handleOptionChange = this.handleOptionChange.bind(this);
-        this.handleQuantityChange = this.handleQuantityChange.bind(this);
-        this.findImage = this.findImage.bind(this);
-    }
+    this.handleOptionChange = this.handleOptionChange.bind(this);
+    this.handleQuantityChange = this.handleQuantityChange.bind(this);
+    this.findImage = this.findImage.bind(this);
+  }
 
-    componentWillMount() {
-        this.props.product.options.forEach(selector => {
-            this.setState({
-                selectedOptions: {[selector.name]: selector.values[0].value}
-            });
-        });
-    }
+  componentWillMount() {
+    this.props.product.options.forEach(selector => {
+      this.setState({
+        selectedOptions: {[selector.name]: selector.values[0].value}
+      });
+    });
+  }
 
-    findImage(images, variantId) {
-        const primary = images[0];
+  findImage(images, variantId) {
+    const primary = images[0];
 
-        const image = images.filter(function(image) {
-            return image.variant_ids.includes(variantId);
-        })[0];
+    const image = images.filter(function(image) {
+      return image.variant_ids.includes(variantId);
+    })[0];
 
-        return (image || primary).src;
-    }
+    return (image || primary).src;
+  }
 
-    handleOptionChange(event) {
-        const target = event.target;
-        let selectedOptions = this.state.selectedOptions;
-        selectedOptions[target.name] = target.value;
+  handleOptionChange(event) {
+    const target = event.target;
+    let selectedOptions = this.state.selectedOptions;
+    selectedOptions[target.name] = target.value;
 
-        const selectedVariant = Client.Product.Helpers.variantForOptions(this.props.product, selectedOptions);
+    const selectedVariant = Client.Product.Helpers.variantForOptions(
+      this.props.product,
+      selectedOptions
+    );
 
-        this.setState({
-            selectedVariant: selectedVariant,
-            selectedVariantImage: selectedVariant.attrs.image
-        });
-    }
+    this.setState({
+      selectedVariant: selectedVariant,
+      selectedVariantImage: selectedVariant.attrs.image
+    });
+  }
 
-    handleQuantityChange(event) {
-        this.setState({
-            selectedVariantQuantity: event.target.value
-        });
-    }
+  handleQuantityChange(event) {
+    this.setState({
+      selectedVariantQuantity: event.target.value
+    });
+  }
 
-    render() {
-        let variantImage = this.state.selectedVariantImage || this.props.product.images[0];
-        let variant = this.state.selectedVariant || this.props.product.variants[0];
-        let variantQuantity = this.state.selectedVariantQuantity || 1;
-        return (
-            <div className="Product">
-                {this.props.product.images.length ? <img src={variantImage.src} alt={`${this.props.product.title} product shot`} /> : null}
-                <h5 className="Product__title">{this.props.product.title}</h5>
-                <span className="Product__price">${variant.price}</span>
-                <button className="Product__buy button" onClick={() => this.props.addVariantToCart(variant.id, variantQuantity)}>
+  render() {
+    let variantImage = this.state.selectedVariantImage || this.props.product.images[0];
+    let variant = this.state.selectedVariant || this.props.product.variants[0];
+    let variantQuantity = this.state.selectedVariantQuantity || 1;
+    return (
+      <div className="Product">
+        {this.props.product.images.length ? (
+          <img src={variantImage.src} alt={`${this.props.product.title} product shot`} />
+        ) : null}
+        <h5 className="Product__title">{this.props.product.title}</h5>
+        <span className="Product__price">${variant.price}</span>
+        {/* <button className="Product__buy button" onClick={() => this.props.addVariantToCart(variant.id, variantQuantity)}>
                     Add to Cart
-                </button>
-            </div>
-        );
-    }
+                </button> */}
+      </div>
+    );
+  }
 }
 
 export default Product;

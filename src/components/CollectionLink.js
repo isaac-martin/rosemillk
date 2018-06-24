@@ -1,12 +1,15 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 
-const CollectionLink = ({title, handle, id}) => (
-    <Link to={`/collection/${handle}`} className="absolute absolute--fill z-3">
-        <div className="pv3 bb b--light-gray flex justify-between items-center">
-            <h1 className="f6 mv0 black ttu biryani pr2"> Collection : {title}</h1>
-        </div>
-    </Link>
+const CollectionLink = ({title, handle, image}) => (
+  <Link to={`/collection/${handle}`} className="">
+    <div className="homeProdWrap pv3 flex justify-between items-end">
+      <h1 className="f1 mv0 black pr2">{title}</h1>
+      <div className="collectionHomeImg">
+        <img src={image.src} alt={image.altText} />
+      </div>
+    </div>
+  </Link>
 );
 
 export default CollectionLink;

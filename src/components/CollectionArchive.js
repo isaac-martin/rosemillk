@@ -6,37 +6,45 @@ import Product from './Product';
 import actions from '.././store/actions';
 
 class CollectionArchive extends Component {
-    componentDidMount() {
-        const {setCollectionID, attrs, match} = this.props;
-        setCollectionID(match.params.handle);
-    }
+  componentDidMount() {
+    const {setCollectionID, attrs, client, setProducts} = this.props;
+    setCollectionID(attrs.id.value);
 
-    render() {
-        const {hasPreviousPage, match, collectionID, location} = this.props;
-        return (
-            <div className="p3 ph4-l pad-bottom">
-                Collection Title
-                {/* {collectionID} */}
-                {location.pathname}
-                {/* {title.value} */}
-                {/* {this.props.attrs.handle} */}
-            </div>
-        );
-    }
+    client.fetchCollectionWithProducts(attrs.id.value).then(res => {
+      setProducts(res.products);
+    });
+  }
+
+  render() {
+    const {attrs, products} = this.props;
+    let productArchive = products.map(product => {
+      return (
+        <Product
+          addVariantToCart={this.props.addVariantToCart}
+          client={this.props.client}
+          key={product.id.toString()}
+          product={product}
+        />
+      );
+    });
+
+    return <div className="Product-wrapper">{productArchive}</div>;
+  }
 }
 
 const getCollection = (collections, handle) => {
-    // here we grab the mix that has a slug that matches
-    // our params from the url
-    const [collection = {}] = collections.filter(collection => collection.handle === handle);
-    return collection;
+  // here we grab the mix that has a slug that matches
+  // our params from the url
+  const [collection = {}] = collections.filter(collection => collection.handle === handle);
+  return collection;
 };
 
 export default connect(
-    (state, props) => ({
-        ...getCollection(state.collections, props.match.params.handle)
-    }),
-    actions
+  (state, props) => ({
+    ...state,
+    ...getCollection(state.collections, props.match.params.handle)
+  }),
+  actions
 )(CollectionArchive);
 
 // export default connect(
