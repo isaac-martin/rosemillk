@@ -27,7 +27,7 @@ class SingleProduct extends Component {
 const getSingleProduct = (products, handle) => {
     // here we grab the product that has a handle that matches
     // our params from the url
-    const [product] = products.filter(product => product.handle === handle);
+    const product = products.find(product => product.handle === handle);
     return product;
 };
 
