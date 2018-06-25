@@ -6,6 +6,7 @@ import Client, {Config} from 'shopify-buy';
 import Products from './Products';
 import Cart from './Cart';
 import Header from './Header';
+import Footer from './Footer';
 import About from './About';
 import Contact from './Contact';
 
@@ -122,6 +123,7 @@ class App extends Component {
             <Route exact path="/about" component={About} />
             <Route exact path="/contact" component={Contact} />
           </section>
+          <Footer />
           {/* <CollectionList /> */}
           {/* <Products products={this.state.products} addVariantToCart={this.addVariantToCart} /> */}
           {/* <Cart
