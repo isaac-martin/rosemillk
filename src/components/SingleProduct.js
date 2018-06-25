@@ -10,12 +10,15 @@ class SingleProduct extends Component {
     }
 
     render() {
-        const {attrs, product} = this.props;
+        const {attrs} = this.props;
 
         return (
             <div className="SingleProduct">
-                single product
-                {/* {attrs.handle} */}
+                {attrs.title.value}
+                {attrs.descriptionHtml.value}
+                <img src={attrs.images[0].src} />
+                {attrs.variants[0].price}
+                {attrs.variants[0].available.value}
             </div>
         );
     }
@@ -24,7 +27,7 @@ class SingleProduct extends Component {
 const getSingleProduct = (products, handle) => {
     // here we grab the product that has a handle that matches
     // our params from the url
-    const product = products.filter(product => product.handle === handle);
+    const [product] = products.filter(product => product.handle === handle);
     return product;
 };
 

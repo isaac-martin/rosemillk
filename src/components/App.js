@@ -3,7 +3,7 @@ import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import CollectionList from './CollectionList';
 import CollectionArchive from './CollectionArchive';
 import Client, {Config} from 'shopify-buy';
-import Products from './Products';
+// import Products from './Products';
 import SingleProduct from './SingleProduct';
 import Cart from './Cart';
 import Header from './Header';
