@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
 import Logo from '.././imgs/logo.png';
 import {NavLink} from 'react-router-dom';
+import CollectionNav from './CollectionNav';
 
 const Header = props => (
-  <header className="black mb5 pa3 items-center justify-between flex">
+  <header className="black mb5 pa3 pl5 pr5 items-center justify-between flex">
+    <CollectionNav />
     <NavLink to="/" className="logo">
       <img src={Logo} />
     </NavLink>

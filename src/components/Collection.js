@@ -4,9 +4,19 @@ import actions from '.././store/actions';
 import CollectionLink from './CollectionLink';
 // import Client from 'shopify-buy';
 
-const Collection = ({attrs: {title, handle, id, client, image}, ...props}) => <CollectionLink image={image} id={id.value} key={id.value} handle={handle.value} title={title.value} client={client} />;
+const Collection = ({attrs: {title, handle, id, client, image}, ...props}) => (
+  <CollectionLink
+    // addVariantToCart={this.props.addVariantToCart}
+    image={image}
+    id={id.value}
+    key={id.value}
+    handle={handle.value}
+    title={title.value}
+    client={client}
+  />
+);
 
 export default connect(
-    state => state,
-    actions
+  state => state,
+  actions
 )(Collection);
