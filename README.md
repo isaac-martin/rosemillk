@@ -1,8 +1,9 @@
-# react-js-buy-sdk
+# rosemi.lk
+Shopify / React built using [js-buy-sdk](https://github.com/Shopify/js-buy-sdk).This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
-An example using [js-buy-sdk](https://github.com/Shopify/js-buy-sdk) built with [React](https://facebook.github.io/react/). This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
-## Prerequisites
+## Development 
+### Prerequisites
 
 You will need the following things properly installed on your computer.
 
@@ -10,16 +11,15 @@ You will need the following things properly installed on your computer.
 * [Node.js](https://nodejs.org/) (with NPM)
 * [Yarn](https://yarnpkg.com/en/)
 
-## Installation
+### Installation
 
-* `git clone git@github.com:Shopify/storefront-api-examples.git` this repository
-* `cd storefront-api-examples`
-* `cd react-js-buy-sdk`
+* `git clone git@github.com:isaac-martin/rosemillk.git` this repository
+* `cd rosemillk`
 * `yarn install`
 
-## Configuring
+### Configuring API Access
 
-If you would like to connect your store to this example, open up `src/index.js` and update the `domain` and `storefrontAccessToken`:
+Get information from shopify admin
 
 ```js
 const config = new Config({
@@ -28,7 +28,7 @@ const config = new Config({
 });
 ```
 
-## Running
+### Running
 
 Start a local server:
 
@@ -38,22 +38,6 @@ yarn start
 
 * Visit your app at [http://localhost:3000](http://localhost:3000).
 
-## Further Reading / Useful Links
+### Deployment 
 
-* [React](https://facebook.github.io/react/)
-* [JS Buy SDK](https://github.com/Shopify/js-buy-sdk)
-
-## Contributing
-For help on setting up the repo locally, building, testing, and contributing
-please see [CONTRIBUTING.md](https://github.com/Shopify/storefront-api-examples/blob/master/CONTRIBUTING.md).
-
-## Code of Conduct
-All developers who wish to contribute through code or issues, take a look at the
-[CODE_OF_CONDUCT.md](https://github.com/Shopify/storefront-api-examples/blob/master/CODE_OF_CONDUCT.md).
-
-## License
-
-MIT, see [LICENSE](https://github.com/Shopify/storefront-api-examples/blob/master/LICENSE.txt) for details.
-
-<img src="https://cdn.shopify.com/shopify-marketing_assets/builds/19.0.0/shopify-full-color-black.svg" width="200" />
-# rosemillk # rosemillk
+Netlify will automatically when a PR is merged into master branch. 
