@@ -8,20 +8,31 @@ class SingleProduct extends Component {
     super();
     this.addVariantToCart = this.addVariantToCart.bind(this);
   }
+
   componentDidMount() {
-    const {attrs, client, setProductID} = this.props;
+    const {attrs, setProductID} = this.props;
     setProductID(attrs.id.value);
   }
 
-  addVariantToCart(variantId, quantity) {
+  componentDidUpdate(prevProps) {
+    // Typical usage (don't forget to compare props):
+    if (this.props.checkout !== prevProps.checkout) {
+      this.state = {
+        test: 'test',
+        checkout: this.props.checkout
+      };
+    }
+  }
+
+  addVariantToCart(variantId) {
     this.setState({
       isCartOpen: true
     });
 
-    const lineItemsToAdd = [{variantId, quantity: parseInt(quantity, 10)}];
-    const checkoutId = this.state.checkout.id;
+    const lineItemsToAdd = [{variantId, quantity: 1}];
+    const checkoutId = this.props.checkout.id;
 
-    return this.props.client.checkout.addLineItems(checkoutId, lineItemsToAdd).then(res => {
+    return this.props.client.addLineItems(checkoutId, lineItemsToAdd).then(res => {
       this.setState({
         checkout: res
       });
@@ -29,9 +40,9 @@ class SingleProduct extends Component {
   }
 
   render() {
-    const {attrs, product} = this.props;
+    const {attrs} = this.props;
 
-    return (
+    return attrs ? (
       <div className="SingleProduct flex">
         <div className="col-left pa3">
           <img src={attrs.images[0].src} className="featuredImg" />
@@ -43,12 +54,14 @@ class SingleProduct extends Component {
           {attrs.variants[0].price}
           <button
             className="Product__buy button"
-            onClick={() => this.props.addVariantToCart(attrs.variants[0].id, attrs.variantQuantity)}
+            onClick={() => this.addVariantToCart(attrs.id.value)}
           >
             Add to Cart
           </button>
         </div>
       </div>
+    ) : (
+      'Wed Up'
     );
   }
 }
