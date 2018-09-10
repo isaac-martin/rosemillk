@@ -1,27 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App';
+import { BrowserRouter } from 'react-router-dom'
+import App from './App';
+import Client from 'shopify-buy';
 
-import 'tachyons';
-import './styles/app.css';
 
-import registerServiceWorker from './registerServiceWorker';
+const client = Client.buildClient({
+  storefrontAccessToken: 'f1166bffb632479b45464b93f1b8f0fd',
+  domain: 'myrosemilk.myshopify.com'
+});
 
-import {Provider} from 'react-redux';
-import {createStore} from 'redux';
-
-import roseMilkApp from './store';
-
-let store = createStore(
-  roseMilkApp,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
-
-const Root = () => (
-  <Provider store={store}>
-    <App />
-  </Provider>
-);
-
-ReactDOM.render(<Root />, document.getElementById('root'));
-registerServiceWorker();
+ReactDOM.render(
+  <BrowserRouter>
+    <App client={client} />
+  </BrowserRouter>, document.getElementById('root'));

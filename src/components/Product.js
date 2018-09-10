@@ -1,70 +1,27 @@
-import React, {Component} from 'react';
-import Client from 'shopify-buy';
-import {Link} from 'react-router-dom';
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+
 
 class Product extends Component {
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
+  }
 
-        this.state = {};
+  render() {
+    const product = this.props.product
+    const variantImage = product.images[0]
+    const variant = product.variants[0]
 
-        this.handleOptionChange = this.handleOptionChange.bind(this);
-        this.handleQuantityChange = this.handleQuantityChange.bind(this);
-        this.findImage = this.findImage.bind(this);
-    }
-
-    componentWillMount() {
-        this.props.product.options.forEach(selector => {
-            this.setState({
-                selectedOptions: {[selector.name]: selector.values[0].value}
-            });
-        });
-    }
-
-    findImage(images, variantId) {
-        const primary = images[0];
-
-        const image = images.filter(function(image) {
-            return image.variant_ids.includes(variantId);
-        })[0];
-
-        return (image || primary).src;
-    }
-
-    handleOptionChange(event) {
-        const target = event.target;
-        let selectedOptions = this.state.selectedOptions;
-        selectedOptions[target.name] = target.value;
-
-        const selectedVariant = Client.Product.Helpers.variantForOptions(this.props.product, selectedOptions);
-
-        this.setState({
-            selectedVariant: selectedVariant,
-            selectedVariantImage: selectedVariant.attrs.image
-        });
-    }
-
-    handleQuantityChange(event) {
-        this.setState({
-            selectedVariantQuantity: event.target.value
-        });
-    }
-
-    render() {
-        const {attrs, product} = this.props;
-        let variantImage = this.state.selectedVariantImage || this.props.product.images[0];
-        let variant = this.state.selectedVariant || this.props.product.variants[0];
-        let variantQuantity = this.state.selectedVariantQuantity || 1;
-        return (
-            <Link to={`/product/${product.attrs.handle}`} className="">
-                <div className="Product">
-                    {this.props.product.images.length ? <img src={variantImage.src} alt={`${this.props.product.title} product shot`} /> : null}
-                    <h5 className="Product__title">{this.props.product.title}</h5>
-                    <span className="Product__price">${variant.price}</span>
-                </div>
-            </Link>
-        );
-    }
+    return (
+      <div className="Product">
+        <Link exact to={`product/${product.handle}`}>
+          {product.images.length ? <img src={variantImage.src} alt={`${product.title} product shot`} /> : null}
+          <h5 className="Product__title">{product.title}</h5>
+          <span className="Product__price">${variant.price}</span>
+        </Link>
+      </div>
+    );
+  }
 }
 
 export default Product;

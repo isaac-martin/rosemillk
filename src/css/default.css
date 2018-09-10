@@ -1,9 +1,8 @@
 /* INITIALIZERS + DEFAULTS
  * ============================== */
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700');
 
-*,
-*:before,
-*:after {
+*, *:before, *:after {
   box-sizing: border-box;
 }
 
@@ -14,7 +13,7 @@ html {
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Abril Fatface', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-weight: 400;
 }
 
@@ -36,43 +35,17 @@ h2 {
   font-size: 2rem;
 }
 
-/* Header  */
-
-.logo {
-  width: 70px;
-}
-
-.pageWrapper {
-  max-width: 90vw;
-  margin: 0 5vw;
-}
-
-/* Collections */
-
-.collectionHomeImg {
-  width: 500px;
-}
-
-.homeProdList h1 {
-  margin-top: 30px;
-}
-
-a {
-  text-decoration: none;
-}
-
-.homeProdWrap {
-}
 /* BASE APP
  * ============================== */
 .App__header {
   background-color: #222;
+  background-image: url('https://unsplash.it/1000/300?image=823');
   background-size: cover;
   color: white;
   padding: 10px 10px;
 }
 
-.App__nav {
+.App__nav{
   width: 100%;
   list-style: none;
 }
@@ -150,9 +123,9 @@ a {
 }
 
 .Flash__message {
-  background: rgba(0, 0, 0, 0.88);
+  background: rgba(0,0,0,0.88);
   border-radius: 3px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   color: #ffffff;
   cursor: default;
   display: -webkit-flex;
@@ -295,7 +268,7 @@ a {
 }
 
 .Line-item__title {
-  color: #4e5665;
+  color: #4E5665;
   font-size: 15px;
   font-weight: 400;
 }
