@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
-import Logo from '.././imgs/logo.png';
-import { NavLink } from 'react-router-dom';
+import React, {Component} from 'react';
+import Logo from '.././imgs/rosemilk.jpg';
+import {NavLink} from 'react-router-dom';
+import '.././css/header.css';
 // import CollectionNav from './CollectionNav';
 
 class Header extends Component {
@@ -9,30 +10,39 @@ class Header extends Component {
   // }
 
   render() {
+    const cartCount = this.props.cartCount.length;
     return (
       <header className="black mb5 pa3 pl5 pr5 items-center justify-between flex">
         {/* <CollectionNav /> */}
+        <ul className="list flex justify-center pl0 flex-row">
+          <li className="mh2">
+            <NavLink exact to="/about" className="nav-link link f2">
+              About
+            </NavLink>
+          </li>
+          <li className="mh2">
+            <NavLink to="/comissions" className="nav-link link f2">
+              Commisions
+            </NavLink>
+          </li>
+        </ul>
         <NavLink to="/" className="logo">
           <img alt="logo" src={Logo} />
         </NavLink>
-        <ul className="list flex justify-center pl0 flex-column">
+        <ul className="list flex justify-center pl0 flex-row">
           <li className="mh2">
-            <NavLink exact to="/about" className="nav-link link biryani-black f2">
-              About
-        </NavLink>
+            <NavLink exact to="/contact" className="nav-link link f2">
+              Contact
+            </NavLink>
           </li>
           <li className="mh2">
-            <NavLink to="/contact" className="nav-link link biryani-black f2">
-              Contact
-        </NavLink>
+            <span className="nav-link link biryani-black f2">Cart {cartCount}</span>
           </li>
         </ul>
       </header>
     );
   }
 }
-
-
 
 // class Header extends Component {
 //   render() {

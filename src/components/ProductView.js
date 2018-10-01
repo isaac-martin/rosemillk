@@ -1,41 +1,70 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
+const getSingleProduct = (products, handle) => {
+  // here we grab the product that has a handle that matches	  // here we grab the product that has a handle that matches
+  // our params from the url	  // our params from the url;
+  const product = products.find(product => product.handle === handle);
+  return product;
+};
 
 class SingleProduct extends Component {
   constructor() {
     super();
-    // this.addVariantToCart = this.addVariantToCart.bind(this);
+
+    this.state = {
+      product: []
+    };
+    this.addVariantToCart = this.addVariantToCart.bind(this);
   }
 
+  // componentDidUpdate(prevProps) {
+  //   console.log('updated');
+  //   if (this.props.products !== prevProps.products) {
+  //     this.setState({
+  //       product: getSingleProduct(this.props.products, this.props.match.params.handle)
+  //     });
+  //   }
+  // }
 
+  componentDidMount() {
+    console.log('mount');
+    if (this.props.products) {
+      this.setState({
+        product: getSingleProduct(this.props.products, this.props.match.params.handle)
+      });
+    }
+  }
+
+  addVariantToCart(variantId, quantity) {
+    this.props.handleCartOpen();
+    const lineItemsToAdd = [{variantId: variantId, quantity: 1}];
+    const checkoutId = this.props.checkout.id;
+    return this.props.client.checkout.addLineItems(checkoutId, lineItemsToAdd).then(res => {
+      this.props.updateCheckout(res);
+    });
+  }
 
   render() {
-
-
-    return (
+    const product = this.state.product;
+    return product.attrs ? (
       <div className="ProductView">
-        {/* <div className="col-left pa3">
-          <img src={attrs.images[0].src} className="featuredImg" />
+        <div className="col-left pa3">
+          <img src={product.attrs.images[0].src} className="featuredImg" />
         </div>
         <div className="col-right pa3">
-          <h2>{attrs.title.value}</h2>
-          <p>{attrs.descriptionHtml.value}</p>
+          <h2 onClick={this.props.handleCartOpen}>{product.attrs.title.value}</h2>
+          <p>{product.attrs.descriptionHtml.value}</p>
 
-          {attrs.variants[0].price}
-          <button
-            className="Product__buy button"
-            onClick={() => this.addVariantToCart(attrs.id.value)}
-          >
+          {product.attrs.variants[0].price}
+          <button className="Product__buy button" onClick={() => this.addVariantToCart(product.variants[0].id)}>
             Add to Cart
           </button>
-        </div> */}
-
-        Wassup
+        </div>
       </div>
-    )
+    ) : (
+      <div>Loading</div>
+    );
   }
 }
 
-
-
-export default SingleProduct
+export default SingleProduct;

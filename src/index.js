@@ -1,9 +1,9 @@
 import React from 'react';
+import 'tachyons';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom'
+import {BrowserRouter} from 'react-router-dom';
 import App from './App';
 import Client from 'shopify-buy';
-
 
 const client = Client.buildClient({
   storefrontAccessToken: 'f1166bffb632479b45464b93f1b8f0fd',
@@ -13,4 +13,6 @@ const client = Client.buildClient({
 ReactDOM.render(
   <BrowserRouter>
     <App client={client} />
-  </BrowserRouter>, document.getElementById('root'));
+  </BrowserRouter>,
+  document.getElementById('root')
+);
