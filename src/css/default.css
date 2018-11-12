@@ -1,6 +1,6 @@
 /* INITIALIZERS + DEFAULTS
  * ============================== */
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700');
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900');
 
 *, *:before, *:after {
   box-sizing: border-box;
@@ -13,8 +13,15 @@ html {
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Playfair Display', sans-serif;
   font-weight: 400;
+  color: #58585b;
+  background-color: #f1eee8;
+}
+
+a {
+  color: #58585b;
+  text-decoration: none;
 }
 
 img {
@@ -37,13 +44,6 @@ h2 {
 
 /* BASE APP
  * ============================== */
-.App__header {
-  background-color: #222;
-  background-image: url('https://unsplash.it/1000/300?image=823');
-  background-size: cover;
-  color: white;
-  padding: 10px 10px;
-}
 
 .App__nav{
   width: 100%;
@@ -61,7 +61,6 @@ h2 {
 }
 
 .Product-wrapper {
-  max-width: 900px;
   margin: 40px auto 0;
   display: flex;
   flex-wrap: wrap;
@@ -152,7 +151,7 @@ h2 {
   right: 0;
   height: 100%;
   width: 350px;
-  background-color: white;
+  background-color: #f1eee8;
   display: flex;
   flex-direction: column;
   border-left: 1px solid #e5e5e5;
@@ -221,7 +220,7 @@ h2 {
 .pricing {
   margin-left: 5px;
   font-size: 16px;
-  color: black;
+    color: #58585b;
 }
 
 /* LINE ITEMS
@@ -309,7 +308,7 @@ h2 {
 }
 
 .Line-item__quantity {
-  color: black;
+    color: #58585b;
   width: 38px;
   height: 21px;
   line-height: 23px;
@@ -456,4 +455,19 @@ h2 {
   min-height: 2.64286em;
   background: #fbefee;
   color: #c23628;
+}
+
+
+.collectionNav {
+  position: fixed;
+  top: 30px;
+  left: 30px;
+}
+
+#menuCont {
+  position: fixed;
+  top: 0;
+  left: -30px;
+  width: 280px;
+  opacity: 0;
 }

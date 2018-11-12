@@ -17,17 +17,7 @@ class SingleProduct extends Component {
     this.addVariantToCart = this.addVariantToCart.bind(this);
   }
 
-  // componentDidUpdate(prevProps) {
-  //   console.log('updated');
-  //   if (this.props.products !== prevProps.products) {
-  //     this.setState({
-  //       product: getSingleProduct(this.props.products, this.props.match.params.handle)
-  //     });
-  //   }
-  // }
-
   componentDidMount() {
-    console.log('mount');
     if (this.props.products) {
       this.setState({
         product: getSingleProduct(this.props.products, this.props.match.params.handle)

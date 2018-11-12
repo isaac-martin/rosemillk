@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {Route} from 'react-router-dom';
 import Header from './components/Header';
+import Footer from './components/Footer';
 import Cart from './components/Cart';
-import Products from './components/Products';
+import CollectionArchive from './components/Collection';
 import ProductView from './components/ProductView';
 import About from './components/About';
 // import Contact from './components/Contact';
@@ -17,11 +18,11 @@ class App extends Component {
       isCartOpen: false,
       checkout: {lineItems: []},
       products: [],
+      collections: [],
       shop: {}
     };
 
-    this.handleCartClose = this.handleCartClose.bind(this);
-    this.handleCartOpen = this.handleCartOpen.bind(this);
+    this.handleCartToggle = this.handleCartToggle.bind(this);
     this.updateCheckout = this.updateCheckout.bind(this);
     this.addVariantToCart = this.addVariantToCart.bind(this);
     this.updateQuantityInCart = this.updateQuantityInCart.bind(this);
@@ -29,6 +30,12 @@ class App extends Component {
   }
 
   componentWillMount() {
+    this.props.client.collection.fetchAllWithProducts().then(res => {
+      this.setState({
+        collections: res
+      });
+    });
+
     this.props.client.checkout.create().then(res => {
       this.setState({
         checkout: res
@@ -84,16 +91,10 @@ class App extends Component {
     });
   }
 
-  handleCartClose() {
-    this.setState({
-      isCartOpen: false
-    });
-  }
-
-  handleCartOpen() {
-    this.setState({
-      isCartOpen: true
-    });
+  handleCartToggle() {
+    this.setState(prevState => ({
+      isCartOpen: !prevState.isCartOpen
+    }));
   }
 
   updateCheckout(res) {
@@ -105,21 +106,23 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header cartCount={this.state.checkout.lineItems} />
-        <Route exact path="/" render={props => <Products products={this.state.products} client={this.props.client} />} />
+        <Header cartCount={this.state.checkout.lineItems} toggleCart={this.handleCartToggle} />
+        <Route exact path="/" render={props => <About {...props} />} />
         <Route exact path="/about" render={props => <About {...props} {...this.state} />} />
         <Route
           exact
           path="/product/:handle"
-          render={props => <ProductView {...props} {...this.state} updateCheckout={this.updateCheckout} client={this.props.client} handleCartOpen={this.handleCartOpen} />}
+          render={props => <ProductView {...props} {...this.state} updateCheckout={this.updateCheckout} client={this.props.client} handleCartOpen={this.handleCartToggle} />}
         />
+        <Route exact path="/collection/:handle" render={props => <CollectionArchive {...props} {...this.state} collections={this.state.collections} products={this.state.products} />} />
         <Cart
           checkout={this.state.checkout}
           isCartOpen={this.state.isCartOpen}
-          handleCartClose={this.handleCartClose}
+          toggleCart={this.handleCartToggle}
           updateQuantityInCart={this.updateQuantityInCart}
           removeLineItemInCart={this.removeLineItemInCart}
         />
+        <Footer />
       </div>
     );
   }
