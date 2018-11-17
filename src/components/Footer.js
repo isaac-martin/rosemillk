@@ -10,12 +10,10 @@ class Footer extends Component {
 
   render() {
     return (
-      <footer className="black mb5 pa3 pl5 pr5 items-center justify-between flex f3">
+      <footer className="black pa3 pl5 pr5 items-center justify-between flex f3">
         {/* <CollectionNav /> */}
         <ul className="list flex justify-center pl0 flex-row">
-        <li className="mh2">
-            &copy; {(new Date()).getFullYear()} Rosemilk |
-          </li>
+          <li className="mh2">&copy; {new Date().getFullYear()} Rosemilk |</li>
           <li className="mh2">
             <NavLink exact to="/about" className="nav-link link">
               About |

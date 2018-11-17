@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {bodyCol} from '../util.js';
 
 const getSingleProduct = (products, handle) => {
   // here we grab the product that has a handle that matches	  // here we grab the product that has a handle that matches
@@ -18,7 +19,17 @@ class SingleProduct extends Component {
   }
 
   componentDidMount() {
+    bodyCol();
     if (this.props.products) {
+      this.setState({
+        product: getSingleProduct(this.props.products, this.props.match.params.handle)
+      });
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    // Typical usage (don't forget to compare props):
+    if (this.props.products !== prevProps.products) {
       this.setState({
         product: getSingleProduct(this.props.products, this.props.match.params.handle)
       });
@@ -34,12 +45,17 @@ class SingleProduct extends Component {
     });
   }
 
+  changeImage = e => {
+    const featured = document.querySelector('.featuredImg');
+    featured.src = e.target.src;
+  };
+
   render() {
     const product = this.state.product;
-    return product.attrs ? (
+    return product && product.attrs ? (
       <div className="ProductView">
         <div className="col-left pa3">
-          <img src={product.attrs.images[0].src} className="featuredImg" />
+          <img alt={product.attrs.images[0].altText} src={product.attrs.images[0].src} className="featuredImg" />
         </div>
         <div className="col-right pa3">
           <h2 onClick={this.props.handleCartOpen}>{product.attrs.title.value}</h2>
@@ -49,6 +65,11 @@ class SingleProduct extends Component {
           <button className="Product__buy button" onClick={() => this.addVariantToCart(product.variants[0].id)}>
             Add to Cart
           </button>
+        </div>
+        <div className="thumbNails">
+          {product.images.map((image, index) => {
+            return <img alt={image.altText} src={image.src} className={`thumbImage t-${index}`} onClick={e => this.changeImage(e)} />;
+          })}
         </div>
       </div>
     ) : (

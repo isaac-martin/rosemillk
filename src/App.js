@@ -107,14 +107,16 @@ class App extends Component {
     return (
       <div className="App">
         <Header cartCount={this.state.checkout.lineItems} toggleCart={this.handleCartToggle} />
-        <Route exact path="/" render={props => <About {...props} />} />
-        <Route exact path="/about" render={props => <About {...props} {...this.state} />} />
-        <Route
-          exact
-          path="/product/:handle"
-          render={props => <ProductView {...props} {...this.state} updateCheckout={this.updateCheckout} client={this.props.client} handleCartOpen={this.handleCartToggle} />}
-        />
-        <Route exact path="/collection/:handle" render={props => <CollectionArchive {...props} {...this.state} collections={this.state.collections} products={this.state.products} />} />
+        <div className="mainArea">
+          <Route exact path="/" render={props => <About {...props} />} />
+          <Route exact path="/about" render={props => <About {...props} {...this.state} />} />
+          <Route
+            exact
+            path="/product/:handle"
+            render={props => <ProductView {...props} {...this.state} updateCheckout={this.updateCheckout} client={this.props.client} handleCartOpen={this.handleCartToggle} />}
+          />
+          <Route exact path="/collection/:handle" render={props => <CollectionArchive {...props} {...this.state} collections={this.state.collections} products={this.state.products} />} />
+        </div>
         <Cart
           checkout={this.state.checkout}
           isCartOpen={this.state.isCartOpen}

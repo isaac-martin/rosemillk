@@ -12,7 +12,7 @@ class Header extends Component {
   render() {
     const cartCount = this.props.cartCount.length;
     return (
-      <header className="black mb5 pa3 pl5 pr5 items-center justify-between flex">
+      <header className="black pa3 pl5 pr5 items-center justify-between flex">
         <CollectionNav />
         <div />
         <NavLink to="/" className="logo">

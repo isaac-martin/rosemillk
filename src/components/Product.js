@@ -13,7 +13,7 @@ class Product extends Component {
 
     return (
       <div className="Product">
-        <Link to={`product/${product.handle}`}>
+        <Link to={`/product/${product.handle}`}>
           {product.images.length ? <img src={variantImage.src} alt={`${product.title} product shot`} /> : null}
           <h5 className="Product__title">{product.title}</h5>
           <span className="Product__price">${variant.price}</span>
