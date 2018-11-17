@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {bodyCol} from '../util.js';
+import '.././css/product.scss';
 
 const getSingleProduct = (products, handle) => {
   // here we grab the product that has a handle that matches	  // here we grab the product that has a handle that matches

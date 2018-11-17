@@ -8,7 +8,7 @@ import ProductView from './components/ProductView';
 import About from './components/About';
 // import Contact from './components/Contact';
 
-import './css/default.css';
+import './css/default.scss';
 
 class App extends Component {
   constructor() {

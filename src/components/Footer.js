@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {NavLink} from 'react-router-dom';
-import '.././css/header.css';
+import '.././css/header.scss';
 // import CollectionNav from './CollectionNav';
 
 class Footer extends Component {
