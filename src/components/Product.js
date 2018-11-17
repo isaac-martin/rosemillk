@@ -1,9 +1,14 @@
 import React, {Component} from 'react';
+import {bodyCol} from '../util.js';
 import {Link} from 'react-router-dom';
 
 class Product extends Component {
   constructor(props) {
     super(props);
+  }
+
+  componentDidMount() {
+    bodyCol();
   }
 
   render() {

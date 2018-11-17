@@ -6,6 +6,8 @@ import Cart from './components/Cart';
 import CollectionArchive from './components/Collection';
 import ProductView from './components/ProductView';
 import About from './components/About';
+import Instagram from './components/Instagram';
+
 // import Contact from './components/Contact';
 
 import './css/default.scss';
@@ -124,6 +126,7 @@ class App extends Component {
           updateQuantityInCart={this.updateQuantityInCart}
           removeLineItemInCart={this.removeLineItemInCart}
         />
+        <Instagram />
         <Footer />
       </div>
     );

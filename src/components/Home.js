@@ -9,6 +9,9 @@ const getCollection = (collections, handle) => {
 };
 
 class Collection extends Component {
+  componentDidMount() {
+    bodyCol();
+  }
   render() {
     const collection = getCollection(this.props.collections, this.props.match.params.handle);
 

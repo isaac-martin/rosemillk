@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import {bodyCol} from '../util.js';
+
 import Product from './Product';
 
 const getCollection = (collections, handle) => {
@@ -12,6 +14,10 @@ class CollectionArchive extends Component {
     this.state = {
       collection: []
     };
+  }
+
+  componentDidMount() {
+    bodyCol();
   }
 
   render() {
