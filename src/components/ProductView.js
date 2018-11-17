@@ -59,18 +59,18 @@ class SingleProduct extends Component {
           <img alt={product.attrs.images[0].altText} src={product.attrs.images[0].src} className="featuredImg" />
         </div>
         <div className="col-right pa3">
-          <h2 onClick={this.props.handleCartOpen}>{product.attrs.title.value}</h2>
+          <h2>{product.attrs.title.value}</h2>
           <p>{product.attrs.descriptionHtml.value}</p>
 
           {product.attrs.variants[0].price}
           <button className="Product__buy button" onClick={() => this.addVariantToCart(product.variants[0].id)}>
             Add to Cart
           </button>
-        </div>
-        <div className="thumbNails">
-          {product.images.map((image, index) => {
-            return <img alt={image.altText} src={image.src} className={`thumbImage t-${index}`} onClick={e => this.changeImage(e)} />;
-          })}
+          <div className="thumbnails">
+            {product.images.map((image, index) => {
+              return <img alt={image.altText} src={image.src} className={`thumbImage t-${index}`} onClick={e => this.changeImage(e)} />;
+            })}
+          </div>
         </div>
       </div>
     ) : (
