@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {bodyCol} from '../util.js';
 import '.././css/product.scss';
+import { CSSTransition } from 'react-transition-group';
+
 
 const getSingleProduct = (products, handle) => {
   // here we grab the product that has a handle that matches	  // here we grab the product that has a handle that matches
@@ -54,6 +56,8 @@ class SingleProduct extends Component {
   render() {
     const product = this.state.product;
     return product && product.attrs ? (
+      <CSSTransition in={true} appear={true} timeout={1000} classNames="fade">
+
       <div className="ProductView">
         <div className="col-left pa3">
           <img alt={product.attrs.images[0].altText} src={product.attrs.images[0].src} className="featuredImg" />
@@ -75,6 +79,7 @@ class SingleProduct extends Component {
           )}
         </div>
       </div>
+      </CSSTransition>
     ) : (
       <div>Loading</div>
     );

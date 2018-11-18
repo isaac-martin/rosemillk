@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {bodyCol} from '../util.js';
+import {CSSTransition} from 'react-transition-group';
 
 import Product from './Product';
 
@@ -32,7 +33,11 @@ class CollectionArchive extends Component {
       products = 'loading';
     }
 
-    return <div className="Product-wrapper">{products}</div>;
+    return (
+      <CSSTransition in={true} appear={true} timeout={1000} classNames="fade">
+        <div className="Product-wrapper">{products}</div>
+      </CSSTransition>
+    );
   }
 }
 

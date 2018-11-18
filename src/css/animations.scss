@@ -6,7 +6,10 @@
 .fade-appear.fade-appear-active {
   opacity: 1;
   transition: opacity 1000ms linear;
-  transition-delay: .5s;
+}
+
+.collectionNav .fade-appear {
+      transition-delay: .5s;
 }
 
 /* enter */
