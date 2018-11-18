@@ -488,12 +488,56 @@ h2 {
 
 .bg-pink {
   background-color: #ff80cc;
+  .cart-count span {
+    color: #ff80cc;
+  }
 }
 
 .bg-org {
   background-color: #FF853B;
+   .cart-count span {
+    color: #FF853B;
+  }
 }
 
 .bg-lilac {
   background-color: #7377CA;
+  .cart-count span {
+    color: #7377CA;
+  }
+}
+
+.instagramWrap a {
+  text-align: center;
+  text-decoration: underline;
+  font-size: 32px;
+  display: block;
+  margin-bottom: 20px
+}
+.instagramGrid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 20px 20px;
+    padding: 0 20px;
+    // height: calc(100vw / 6 + 120px);
+    a {
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      svg {
+        width: 100%;
+        height: 100%;
+      }
+    }
+}
+
+
+.cart-count span {
+  border-radius: 50%;
+  background: white;
+      width: 25px;
+    height: 25px;
+    display: inline-block;
+    text-align: center;
+    line-height: 19px;
 }
