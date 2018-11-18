@@ -2,6 +2,8 @@
  * ============================== */
 @import url('https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900');
 
+@import 'animations';
+
 *, *:before, *:after {
   box-sizing: border-box;
 }
@@ -151,12 +153,22 @@ h2 {
   right: 0;
   height: 100%;
   width: 350px;
-  background-color: #f1eee8;
+  background-color: #d7f3fa;
   display: flex;
   flex-direction: column;
   border-left: 1px solid #e5e5e5;
-  transform: translateX(100%);
+  transform: translateX(calc(100% + 60px));
   transition: transform 0.15s ease-in-out;
+}
+
+.Cart-side {
+  background-image: url('../imgs/cart-side.svg');
+  background-repeat: repeat-y;
+  position: absolute;
+  left: -51px;
+  top: 0;
+  bottom: 0;
+  width: 80px;
 }
 
 .Cart--open {
@@ -462,6 +474,19 @@ h2 {
   position: fixed;
   top: 30px;
   left: 30px;
+
+  ul, span {
+    position: relative;
+    z-index: 2
+  }
+
+  li, span {
+    color: white;
+    margin: 5px 0;
+    font-size: 22px;
+    font-weight: bold;
+    a {color: white;}
+  }
 }
 
 #menuCont {
@@ -539,4 +564,20 @@ h2 {
     display: inline-block;
     text-align: center;
     line-height: 19px;
+}
+
+
+#shape-defs {
+  display: none;
+}
+
+#container {
+  position: fixed;
+  width: 380px;
+       left: -45px;
+    top: -40px;
+  pointer-events: none;
+      path {
+        fill: #e36cbf;
+      }
 }

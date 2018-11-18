@@ -66,11 +66,13 @@ class SingleProduct extends Component {
           <button className="Product__buy button" onClick={() => this.addVariantToCart(product.variants[0].id)}>
             Add to Cart
           </button>
-          <div className="thumbnails">
-            {product.images.map((image, index) => {
-              return <img alt={image.altText} src={image.src} className={`thumbImage t-${index}`} onClick={e => this.changeImage(e)} />;
-            })}
-          </div>
+          {product.images.length > 1 && (
+            <div className="thumbnails">
+              {product.images.map((image, index) => {
+                return <img alt={image.altText} src={image.src} className={`thumbImage t-${index}`} onClick={e => this.changeImage(e)} />;
+              })}
+            </div>
+          )}
         </div>
       </div>
     ) : (
