@@ -5,10 +5,12 @@ import {Link} from 'react-router-dom';
 class Product extends Component {
   constructor(props) {
     super(props);
+    this.oldClass = document.querySelector('body').classList[0];
+
   }
 
   componentDidMount() {
-    bodyCol();
+    bodyCol(this.oldClass);
   }
 
   render() {

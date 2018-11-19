@@ -75,8 +75,8 @@ class CollectionNav extends Component {
                 </NavLink>
               </li>
               <li className="">
-                <NavLink exact to="/collection/mugs" className="nav-link link">
-                  Mugs
+                <NavLink exact to="/collection/cups" className="nav-link link">
+                  Cups
                 </NavLink>
               </li>
               <li className="">
