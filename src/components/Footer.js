@@ -10,8 +10,7 @@ class Footer extends Component {
 
   render() {
     return (
-      <footer className="black pa3 pl5 pr5 items-center justify-between flex f3">
-        {/* <CollectionNav /> */}
+      <footer className="white pa3 pl5 pr5 items-center justify-between flex f3">
         <ul className="list flex justify-center pl0 flex-row">
           <li className="mh2">&copy; {new Date().getFullYear()} Rosemilk |</li>
           <li className="mh2">

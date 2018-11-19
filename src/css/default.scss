@@ -539,7 +539,8 @@ z-index: 10;
   text-decoration: underline;
   font-size: 32px;
   display: block;
-  margin-bottom: 20px
+  margin-bottom: 20px;
+  color: white;
 }
 .instagramGrid {
     display: grid;
@@ -558,7 +559,11 @@ z-index: 10;
 }
 
 
-.cart-count span {
+.cart-count {
+  color: white;
+  font-size: 22px;
+    font-weight: bold;
+  span {
   border-radius: 50%;
   background: white;
       width: 25px;
@@ -566,6 +571,7 @@ z-index: 10;
     display: inline-block;
     text-align: center;
     line-height: 19px;
+}
 }
 
 
@@ -582,4 +588,12 @@ z-index: 10;
       path {
         fill: #e36cbf;
       }
+}
+
+body {
+  transition: .8s ease background-color;
+}
+
+footer a {
+  color: white;
 }

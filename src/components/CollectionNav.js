@@ -22,7 +22,7 @@ class CollectionNav extends Component {
     }
 
     tween({
-      duration: 1000,
+      duration: 700,
       ease: easing.easeInOut
     })
       .pipe(morph)
