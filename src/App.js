@@ -24,6 +24,7 @@ class App extends Component {
       shop: {}
     };
 
+    this.oldClass = document.querySelector('body').classList[0];
     this.handleCartToggle = this.handleCartToggle.bind(this);
     this.updateCheckout = this.updateCheckout.bind(this);
     this.addVariantToCart = this.addVariantToCart.bind(this);
@@ -110,14 +111,14 @@ class App extends Component {
       <div className="App">
         <Header cartCount={this.state.checkout.lineItems} toggleCart={this.handleCartToggle} />
         <div className="mainArea">
-          <Route exact path="/" render={props => <About {...props} />} />
-          <Route exact path="/about" render={props => <About {...props} {...this.state} />} />
+          <Route exact path="/" render={props => <About oldClass={this.oldClass} {...props} />} />
+          <Route exact path="/about" render={props => <About oldClass={this.oldClass} {...props} {...this.state} />} />
           <Route
             exact
             path="/product/:handle"
-            render={props => <ProductView {...props} {...this.state} updateCheckout={this.updateCheckout} client={this.props.client} handleCartOpen={this.handleCartToggle} />}
+            render={props => <ProductView oldClass={this.oldClass} {...props} {...this.state} updateCheckout={this.updateCheckout} client={this.props.client} handleCartOpen={this.handleCartToggle} />}
           />
-          <Route exact path="/collection/:handle" render={props => <CollectionArchive {...props} {...this.state} collections={this.state.collections} products={this.state.products} />} />
+          <Route exact path="/collection/:handle" render={props => <CollectionArchive oldClass={this.oldClass} {...props} {...this.state} collections={this.state.collections} products={this.state.products} />} />
         </div>
         <Cart
           checkout={this.state.checkout}

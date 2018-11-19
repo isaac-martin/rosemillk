@@ -15,11 +15,10 @@ class CollectionArchive extends Component {
     this.state = {
       collection: []
     };
-    this.oldClass = document.querySelector('body').classList[0];
   }
 
   componentDidMount() {
-    bodyCol(this.oldClass);
+    bodyCol(this.props.oldClass);
   }
 
   render() {

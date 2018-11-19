@@ -19,12 +19,12 @@ class SingleProduct extends Component {
       product: []
     };
     this.addVariantToCart = this.addVariantToCart.bind(this);
-    this.oldClass = document.querySelector('body').classList[0];
+
 
   }
 
   componentDidMount() {
-    bodyCol(this.oldClass);
+    bodyCol(this.props.oldClass);
     if (this.props.products) {
       this.setState({
         product: getSingleProduct(this.props.products, this.props.match.params.handle)
