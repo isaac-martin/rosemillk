@@ -3,6 +3,8 @@ import 'tachyons';
 import ReactDOM from 'react-dom';
 import {BrowserRouter} from 'react-router-dom';
 import App from './App';
+import ComingSoon  from '../src/components/comingSoon';
+
 import Client from 'shopify-buy';
 
 const client = Client.buildClient({
@@ -12,7 +14,7 @@ const client = Client.buildClient({
 
 ReactDOM.render(
   <BrowserRouter>
-    <App client={client} />
+    <ComingSoon />
   </BrowserRouter>,
   document.getElementById('root')
 );
