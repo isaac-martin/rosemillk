@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import SVG from 'react-inlinesvg';
+import SVG from 'react-svg';
 import Logo from '.././imgs/rmilk_logo.svg';
 import {NavLink} from 'react-router-dom';
 import '.././css/header.scss';
@@ -19,11 +19,10 @@ class Header extends Component {
         <NavLink to="/" className="logo">
           <SVG src={Logo} />
         </NavLink>
-    
-            <p onClick={this.props.toggleCart} className="cart-count nav-link link f2">
-              Cart <span>{cartCount}</span>
-            </p>
-      
+
+        <p onClick={this.props.toggleCart} className="cart-count nav-link link f2">
+          Cart <span>{cartCount}</span>
+        </p>
       </header>
     );
   }

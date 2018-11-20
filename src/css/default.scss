@@ -1,6 +1,6 @@
 /* INITIALIZERS + DEFAULTS
  * ============================== */
-@import url('https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900');
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900|Titan+One');
 
 @import 'animations';
 
@@ -17,12 +17,21 @@ body {
   padding: 0;
   font-family: 'Playfair Display', sans-serif;
   font-weight: 400;
-  color: #58585b;
+  color: white;
   background-color: #f1eee8;
 }
 
+
+
+h2 {
+  font-size: 30px;
+  font-family: 'Titan One'
+}
+p {
+  font-size: 20px;
+}
 a {
-  color: #58585b;
+  color:white;
   text-decoration: none;
 }
 
@@ -39,9 +48,8 @@ h1 {
 }
 
 h2 {
-  font-weight: 300;
+  font-weight: 500;
   margin: 0;
-  font-size: 2rem;
 }
 
 /* BASE APP
@@ -64,9 +72,9 @@ h2 {
 
 .Product-wrapper {
   margin: 40px auto 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px 20px;
 }
 
 .App__view-cart-wrapper {
@@ -82,17 +90,22 @@ h2 {
 }
 
 .button {
-  background-color: #2752ff;
-  color: white;
+  background-color: black;
+  color:white;
   border: none;
-  font-size: 1.2rem;
-  padding: 10px 17px;
+  font-size: 2rem;
+  padding: 10px 27px;
   cursor: pointer;
+  border-radius: 30px;
+  font-weight: bold;
+  display: block;
+  margin-top: 25px;
+  transition: all .5s ease;
 }
 
 .button:hover,
 .button:focus {
-  background-color: #222222;
+  background-color:black;
 }
 
 .button:disabled {
@@ -145,6 +158,13 @@ h2 {
   display: flex;
 }
 
+.prodPrice {
+  font-weight: bold;
+  border-bottom: 1px solid;
+  padding-bottom: 5px;
+  display: inline-block;
+}
+
 /* CART
  * ============================== */
 .Cart {
@@ -153,12 +173,12 @@ h2 {
   right: 0;
   height: 100%;
   width: 350px;
-  background-color: #d7f3fa;
+  background-color: #e36cbf;
   display: flex;
   flex-direction: column;
   border-left: 1px solid #e5e5e5;
   transform: translateX(calc(100% + 60px));
-  transition: transform 0.15s ease-in-out;
+  transition: transform 0.6s ease-in-out;
   z-index: 11;
 }
 
@@ -186,13 +206,15 @@ h2 {
   background: transparent;
   transition: transform 100ms ease;
   cursor: pointer;
+  color: white;
 }
 
 .Cart__header {
   padding: 20px;
-  border-bottom: 1px solid #e5e5e5;
+  border-bottom: 1px solid white;
   flex: 0 0 auto;
   display: inline-block;
+  color: white;
 }
 
 .Cart__line-items {
@@ -203,7 +225,8 @@ h2 {
 
 .Cart__footer {
   padding: 20px;
-  border-top: 1px solid #e5e5e5;
+  color: white;
+  border-top: 1px solid white;
   flex: 0 0 auto;
 }
 
@@ -211,6 +234,7 @@ h2 {
   margin-top: 20px;
   display: block;
   width: 100%;
+  background: black;
 }
 
 .Cart-info {
@@ -233,7 +257,7 @@ h2 {
 .pricing {
   margin-left: 5px;
   font-size: 16px;
-    color: #58585b;
+    color: white;;
 }
 
 /* LINE ITEMS
@@ -357,10 +381,9 @@ h2 {
 /* PRODUCTS
  * ============================== */
 .Product {
-  flex: 0 1 31%;
-  margin-left: 1%;
-  margin-right: 1%;
-  margin-bottom: 3%;
+  a {
+    display: block;
+  }
 }
 
 .Product__title {

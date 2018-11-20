@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import {bodyCol} from '../util.js';
 import '.././css/product.scss';
-import { CSSTransition } from 'react-transition-group';
-
+import {CSSTransition} from 'react-transition-group';
 
 const getSingleProduct = (products, handle) => {
   // here we grab the product that has a handle that matches	  // here we grab the product that has a handle that matches
@@ -19,8 +18,6 @@ class SingleProduct extends Component {
       product: []
     };
     this.addVariantToCart = this.addVariantToCart.bind(this);
-
-
   }
 
   componentDidMount() {
@@ -59,28 +56,27 @@ class SingleProduct extends Component {
     const product = this.state.product;
     return product && product.attrs ? (
       <CSSTransition in={true} appear={true} timeout={1000} classNames="fade">
+        <div className="ProductView">
+          <div className="col-left pa3">
+            <img alt={product.attrs.images[0].altText} src={product.attrs.images[0].src} className="featuredImg" />
+          </div>
+          <div className="col-right pa3">
+            <h2>{product.attrs.title.value}</h2>
+            <div dangerouslySetInnerHTML={{__html: product.attrs.descriptionHtml.value}} />
 
-      <div className="ProductView">
-        <div className="col-left pa3">
-          <img alt={product.attrs.images[0].altText} src={product.attrs.images[0].src} className="featuredImg" />
+            <p className="prodPrice">{product.attrs.variants[0].price}</p>
+            <button className="Product__buy button" onClick={() => this.addVariantToCart(product.variants[0].id)}>
+              Add to Cart
+            </button>
+            {product.images.length > 1 && (
+              <div className="thumbnails">
+                {product.images.map((image, index) => {
+                  return <img alt={image.altText} src={image.src} className={`thumbImage t-${index}`} onClick={e => this.changeImage(e)} />;
+                })}
+              </div>
+            )}
+          </div>
         </div>
-        <div className="col-right pa3">
-          <h2>{product.attrs.title.value}</h2>
-          <p>{product.attrs.descriptionHtml.value}</p>
-
-          {product.attrs.variants[0].price}
-          <button className="Product__buy button" onClick={() => this.addVariantToCart(product.variants[0].id)}>
-            Add to Cart
-          </button>
-          {product.images.length > 1 && (
-            <div className="thumbnails">
-              {product.images.map((image, index) => {
-                return <img alt={image.altText} src={image.src} className={`thumbImage t-${index}`} onClick={e => this.changeImage(e)} />;
-              })}
-            </div>
-          )}
-        </div>
-      </div>
       </CSSTransition>
     ) : (
       <div>Loading</div>
