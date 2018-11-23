@@ -75,6 +75,24 @@ h2 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 20px 20px;
+
+ 
+
+  :nth-child(1){
+        grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 3;
+  }
+
+    :nth-child(6){
+    grid-column-start: 2;
+    grid-column-end: 4;
+    grid-row-start: 3;
+    grid-row-end: 5;
+  }
+
+
 }
 
 .App__view-cart-wrapper {
@@ -383,6 +401,11 @@ h2 {
 .Product {
   a {
     display: block;
+    height: 100%;
+
+    img {
+       object-fit: cover;
+    }
   }
 }
 
