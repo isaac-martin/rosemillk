@@ -60,7 +60,15 @@ class CollectionNav extends Component {
       C656.5,71,440.6-39.7,357.4,38.2L357.4,38.2"
           />
         </svg>
-        <span onClick={evt => this.toggleCollectionMenu()}>Shop \</span>
+        <span className={this.state.isCollectionNavOpen ? 'navOpen' : ''} onClick={evt => this.toggleCollectionMenu()}>
+          Shop
+          <svg width="40" height="48" viewBox="0 0 40 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M18 21C19.6 13.8 16 10 14.5 7C13 4 18 0.833333 22 1C26 1.16667 32.737 8.16767 29.5 11C25.5 14.5 17.8333 34.6667 19.5 35.5C21.1667 36.3333 23.1 29.7 27.5 28.5C33 27 47 48.5 34.5 39.5C24.5 32.3 19.6667 41.8333 18.5 47.5C19.0429 47.9937 17.7724 47.1206 17.5429 46.9937C-0.373505 37.0842 -4.37985 25.9557 5.00001 22.5C11.4 20.5 14 29 12.5 29.5C11 30 9.00001 26.4 7.00001 30C4.50001 34.5 16.5 39.5 15 38.5C13.5 37.5 16 30 18 21Z"
+              fill="white"
+            />
+          </svg>
+        </span>
         {this.state.isCollectionNavOpen && (
           <CSSTransition in={true} appear={true} timeout={1000} classNames="fade">
             <ul className="list flex justify-center pl0 flex-column">

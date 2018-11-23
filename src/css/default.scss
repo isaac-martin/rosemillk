@@ -511,6 +511,25 @@ z-index: 10;
     font-weight: bold;
     a {color: white;}
   }
+
+  span {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    &.navOpen{
+      svg {
+        transform: rotate(90deg);
+      }
+    }
+
+    svg {
+      margin-left: 10px;
+      width: 25px;
+      transform: rotate(270deg);
+      transition: all .5s ease;
+    }
+  }
 }
 
 #menuCont {
@@ -654,7 +673,7 @@ z-index: 10;
 
 #container {
   position: fixed;
-  width: 380px;
+  width: 430px;
        left: -45px;
     top: -40px;
   pointer-events: none;

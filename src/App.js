@@ -33,6 +33,7 @@ class App extends Component {
   }
 
   componentWillMount() {
+    console.log(JSON.parse(window.localStorage.getItem('cart')));
     this.props.client.collection.fetchAllWithProducts().then(res => {
       this.setState({
         collections: res
@@ -41,7 +42,7 @@ class App extends Component {
 
     this.props.client.checkout.create().then(res => {
       this.setState({
-        checkout: res
+        checkout: JSON.parse(localStorage.getItem('cart')) || res
       });
     });
 
@@ -67,9 +68,12 @@ class App extends Component {
     const checkoutId = this.state.checkout.id;
 
     return this.props.client.checkout.addLineItems(checkoutId, lineItemsToAdd).then(res => {
-      this.setState({
-        checkout: res
-      });
+      this.setState(
+        {
+          checkout: res
+        },
+        () => localStorage.setItem('cart', JSON.stringify(res))
+      );
     });
   }
 
@@ -78,9 +82,12 @@ class App extends Component {
     const lineItemsToUpdate = [{id: lineItemId, quantity: parseInt(quantity, 10)}];
 
     return this.props.client.checkout.updateLineItems(checkoutId, lineItemsToUpdate).then(res => {
-      this.setState({
-        checkout: res
-      });
+      this.setState(
+        {
+          checkout: res
+        },
+        () => localStorage.setItem('cart', JSON.stringify(res))
+      );
     });
   }
 
@@ -88,9 +95,12 @@ class App extends Component {
     const checkoutId = this.state.checkout.id;
 
     return this.props.client.checkout.removeLineItems(checkoutId, [lineItemId]).then(res => {
-      this.setState({
-        checkout: res
-      });
+      this.setState(
+        {
+          checkout: res
+        },
+        () => localStorage.setItem('cart', JSON.stringify(res))
+      );
     });
   }
 
@@ -101,9 +111,12 @@ class App extends Component {
   }
 
   updateCheckout(res) {
-    this.setState({
-      checkout: res
-    });
+    this.setState(
+      {
+        checkout: res
+      },
+      () => localStorage.setItem('cart', JSON.stringify(res))
+    );
   }
 
   render() {
@@ -118,7 +131,11 @@ class App extends Component {
             path="/product/:handle"
             render={props => <ProductView oldClass={this.oldClass} {...props} {...this.state} updateCheckout={this.updateCheckout} client={this.props.client} handleCartOpen={this.handleCartToggle} />}
           />
-          <Route exact path="/collection/:handle" render={props => <CollectionArchive oldClass={this.oldClass} {...props} {...this.state} collections={this.state.collections} products={this.state.products} />} />
+          <Route
+            exact
+            path="/collection/:handle"
+            render={props => <CollectionArchive oldClass={this.oldClass} {...props} {...this.state} collections={this.state.collections} products={this.state.products} />}
+          />
         </div>
         <Cart
           checkout={this.state.checkout}
