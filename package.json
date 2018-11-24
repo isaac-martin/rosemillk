@@ -4,9 +4,10 @@
   "private": true,
   "dependencies": {
     "node-sass": "^4.10.0",
-    "react": "^15.5.4",
+    "react": "^16.3.0",
     "react-cookie": "^3.0.4",
-    "react-dom": "^15.5.4",
+    "react-dom": "^16.3.2",
+    "react-pose": "^4.0.2",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "react-svg": "^7.1.0",
