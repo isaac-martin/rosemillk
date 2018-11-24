@@ -2,13 +2,15 @@ import React, {Component} from 'react';
 import {Route} from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import Home from './components/Home';
 import Cart from './components/Cart';
 import CollectionArchive from './components/Collection';
 import ProductView from './components/ProductView';
 import About from './components/About';
-import Instagram from './components/Instagram';
+import Policies from './components/Policies';
+import Contact from './components/Contact';
 
-// import Contact from './components/Contact';
+import Instagram from './components/Instagram';
 
 import './css/default.scss';
 
@@ -142,8 +144,10 @@ class App extends Component {
       <div className="App">
         <Header cartCount={this.state.checkout.lineItems} toggleCart={this.handleCartToggle} />
         <div className="mainArea">
-          <Route exact path="/" render={props => <About oldClass={this.oldClass} {...props} />} />
+          <Route exact path="/" render={props => <Home oldClass={this.oldClass} {...props} />} />
           <Route exact path="/about" render={props => <About oldClass={this.oldClass} {...props} {...this.state} />} />
+          <Route exact path="/policies" render={props => <Policies oldClass={this.oldClass} {...props} {...this.state} />} />
+          <Route exact path="/contact" render={props => <Contact oldClass={this.oldClass} {...props} {...this.state} />} />
           <Route
             exact
             path="/product/:handle"

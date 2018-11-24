@@ -15,17 +15,17 @@ class Footer extends Component {
           <li className="mh2">&copy; {new Date().getFullYear()} Rosemilk |</li>
           <li className="mh2">
             <NavLink exact to="/about" className="nav-link link">
-              About |
+              About
             </NavLink>
           </li>
           <li className="mh2">
-            <NavLink exact to="/terms" className="nav-link link">
-              Terms &amp; Conditions |
+            <NavLink exact to="/contact" className="nav-link link">
+              Contact
             </NavLink>
           </li>
           <li className="mh2">
-            <NavLink exact to="/privacy-policy" className="nav-link link">
-              Privacy Policy |
+            <NavLink exact to="/policies" className="nav-link link">
+              Shop Policies
             </NavLink>
           </li>
           <li className="mh2">

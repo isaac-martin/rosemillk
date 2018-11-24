@@ -1,26 +1,19 @@
 import React, {Component} from 'react';
-import Product from './Product';
+import {bodyCol} from '../util.js';
+import Draggable from './draggable.js';
 
-const getCollection = (collections, handle) => {
-  // here we grab the product that has a handle that matches	  // here we grab the product that has a handle that matches
-  // our params from the url	  // our params from the url;
-  const collection = collections.find(product => collection.handle === handle);
-  return collection;
-};
-
-class Collection extends Component {
-  componentDidMount() {
-    bodyCol();
+class Home extends Component {
+  constructor(props) {
+    super(props);
   }
+
   render() {
-    const collection = getCollection(this.props.collections, this.props.match.params.handle);
-
-    let products = collection.map(product => {
-      return <Product client={this.props.client} key={product.id.toString()} product={product} />;
-    });
-
-    return <div className="Product-wrapper">{products}</div>;
+    return (
+      <div className="Home">
+        {/* <Draggable src="https://static1.squarespace.com/static/5b475b2c50a54f54f9b4e1dc/5b4a5c2d88251b376ea105c1/5b4a5c4703ce643303f960e7/1531599999503/DSCF2776.jpg?format=1000w" /> */}
+      </div>
+    );
   }
 }
 
-export default Collection;
+export default Home;
