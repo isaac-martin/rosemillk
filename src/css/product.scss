@@ -12,17 +12,21 @@ display: grid;
  }
 
  .thumbnails {
-   grid-column-start: 1;
-  grid-column-end: 4;
   display: flex;
-  flex-direction: row;
+  width: 100%;
+  grid-column-start: 1;
+  grid-column-end: 4;
+  flex-direction: column;
+  align-items: flex-start;
   flex-wrap: wrap;
-  margin-top: 30px;
+      position: fixed;
+    transform: translateX(-100px);
+    cursor: pointer;
   .thumbImage {
-    width: 100px;
+    width: 85px;
     height: 100px;
-       object-fit: cover;
-       margin: 0 15px 15px 0;
+    object-fit: cover;
+    margin: 0 15px 15px 0;
   }
  }
 }

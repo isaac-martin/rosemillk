@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {bodyCol} from '../util.js';
 import Draggable from './draggable.js';
 
 class Home extends Component {

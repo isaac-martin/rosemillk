@@ -10,7 +10,7 @@ const Image = posed.img(props);
 class Draggable extends React.Component {
   render() {
     return (
-      <div>
+      <div className="drag">
         <Image src={this.props.src} />
       </div>
     );

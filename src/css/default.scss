@@ -1,6 +1,6 @@
 /* INITIALIZERS + DEFAULTS
  * ============================== */
-@import url('https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900|Titan+One');
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900,900i');
 
 @import 'animations';
 
@@ -25,7 +25,8 @@ body {
 
 h2 {
   font-size: 30px;
-  font-family: 'Titan One'
+  font-family: 'Playfair Display', sans-serif;
+  font-weight: 900;
 }
 p {
   font-size: 20px;
@@ -47,10 +48,7 @@ h1 {
   font-size: 3rem;
 }
 
-h2 {
-  font-weight: 500;
-  margin: 0;
-}
+
 
 /* BASE APP
  * ============================== */
@@ -720,4 +718,28 @@ body {
 
 footer a {
   color: white;
+}
+
+
+.About {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+}
+
+.drag {
+  cursor: move;
+}
+
+.scrollable {
+  padding-left: 150px;
+  img {
+    margin-bottom: 10px;
+  }
+}
+
+.sticky {
+  position: sticky;
+  height: 100vh;
+  top: 0;
 }

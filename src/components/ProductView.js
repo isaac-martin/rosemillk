@@ -48,8 +48,13 @@ class SingleProduct extends Component {
   }
 
   changeImage = e => {
-    const featured = document.querySelector('.featuredImg');
-    featured.src = e.target.src;
+    const id = e.target.dataset.thumb;
+    const element = document.getElementById(id);
+    const y = element.getBoundingClientRect().top + window.scrollY - 90;
+  window.scroll({
+  top: y,
+  behavior: 'smooth'
+});
   };
 
   render() {
@@ -57,10 +62,19 @@ class SingleProduct extends Component {
     return product && product.attrs ? (
       <CSSTransition in={true} appear={true} timeout={1000} classNames="fade">
         <div className="ProductView">
-          <div className="col-left pa3">
-            <img alt={product.attrs.images[0].altText} src={product.attrs.images[0].src} className="featuredImg" />
+          <div className="col-left pa3 scrollable">
+            {product.images.length > 1 && (
+              <div className="thumbnails">
+                {product.images.map((image, index) => {
+                  return <img data-thumb={`image-${index}`}alt={image.altText} src={image.src} className={`thumbImage t-${index}`} onClick={e => this.changeImage(e)} />;
+                })}
+              </div>
+            )}
+             {product.images.map((image, index) => {
+                  return <img id={`image-${index}`} alt={image.altText} src={image.src} className={` t-${index}`} onClick={e => this.changeImage(e)} />;
+                  })}
           </div>
-          <div className="col-right pa3">
+          <div className="col-right pa3 sticky">
             <h2>{product.attrs.title.value}</h2>
             <div dangerouslySetInnerHTML={{__html: product.attrs.descriptionHtml.value}} />
 
@@ -68,13 +82,6 @@ class SingleProduct extends Component {
             <button className="Product__buy button" onClick={() => this.addVariantToCart(product.variants[0].id)}>
               Add to Cart
             </button>
-            {product.images.length > 1 && (
-              <div className="thumbnails">
-                {product.images.map((image, index) => {
-                  return <img alt={image.altText} src={image.src} className={`thumbImage t-${index}`} onClick={e => this.changeImage(e)} />;
-                })}
-              </div>
-            )}
           </div>
         </div>
       </CSSTransition>

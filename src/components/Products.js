@@ -11,7 +11,6 @@ class Products extends Component {
     return (
       <div className="Product-wrapper">
         <CSSTransition in={true} appear={true} timeout={1000} classNames="fade">
-          {/* <CSSTransition appear={true} enter={true} className="productList"> */}
           {products}
         </CSSTransition>
       </div>
