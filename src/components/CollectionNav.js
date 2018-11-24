@@ -62,10 +62,16 @@ class CollectionNav extends Component {
         </svg>
         <span className={this.state.isCollectionNavOpen ? 'navOpen' : ''} onClick={evt => this.toggleCollectionMenu()}>
           Shop
-          <svg width="40" height="48" viewBox="0 0 40 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg viewBox="0 0 138 138" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
-              d="M18 21C19.6 13.8 16 10 14.5 7C13 4 18 0.833333 22 1C26 1.16667 32.737 8.16767 29.5 11C25.5 14.5 17.8333 34.6667 19.5 35.5C21.1667 36.3333 23.1 29.7 27.5 28.5C33 27 47 48.5 34.5 39.5C24.5 32.3 19.6667 41.8333 18.5 47.5C19.0429 47.9937 17.7724 47.1206 17.5429 46.9937C-0.373505 37.0842 -4.37985 25.9557 5.00001 22.5C11.4 20.5 14 29 12.5 29.5C11 30 9.00001 26.4 7.00001 30C4.50001 34.5 16.5 39.5 15 38.5C13.5 37.5 16 30 18 21Z"
-              fill="white"
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M138 69c0 38.108-30.892 69-69 69-38.108 0-69-30.892-69-69C0 30.892 30.892 0 69 0c38.108 0 69 30.892 69 69zm-69 62c34.242 0 62-27.758 62-62 0-34.242-27.758-62-62-62C34.758 7 7 34.758 7 69c0 34.242 27.758 62 62 62z"
+              fill="#fff"
+            />
+            <path
+              d="M49.483 61.571c3.86 0 6.991-3.13 6.991-6.99a6.991 6.991 0 1 0-6.991 6.99zM87.43 61.571a6.99 6.99 0 1 0 0-13.98 6.991 6.991 0 0 0 0 13.98zM68.456 98.94c-19.903 0-24-17.396-24-17.396h-9.952s6.145 26.678 33.952 26.678c27.514 0 33.952-26.678 33.952-26.678h-9.951s-4.098 17.395-24.001 17.395z"
+              fill="#fff"
             />
           </svg>
         </span>
@@ -89,12 +95,7 @@ class CollectionNav extends Component {
               </li>
               <li className="">
                 <NavLink exact to="/collection/vases" className="nav-link link ">
-                  Vases
-                </NavLink>
-              </li>
-              <li className="">
-                <NavLink exact to="/collection/planters" className="nav-link link ">
-                  Planters
+                  Vases &amp; Planters
                 </NavLink>
               </li>
             </ul>

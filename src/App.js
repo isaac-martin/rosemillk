@@ -32,8 +32,26 @@ class App extends Component {
     this.removeLineItemInCart = this.removeLineItemInCart.bind(this);
   }
 
+  fetchInventory() {
+    const user = '257e0e8da0e525ab2924a72d8875b2fa';
+    const pass = '1791e1adeded40d40bdc58573d2bf4b4';
+    const url = 'https://myrosemilk.myshopify.com/admin/inventory_levels.json?location_ids=4726161473';
+
+    const headers = new Headers();
+
+    headers.append('Authorization', 'Basic ' + btoa(user + ':' + pass));
+
+    fetch(url, {headers: headers})
+      .then(response => response.json())
+      .then(data =>
+        this.setState({
+          inventory: data
+        })
+      )
+      .catch(error => this.setState({error}));
+  }
   componentWillMount() {
-    console.log(JSON.parse(window.localStorage.getItem('cart')));
+    this.fetchInventory();
     this.props.client.collection.fetchAllWithProducts().then(res => {
       this.setState({
         collections: res
