@@ -70,9 +70,11 @@ class SingleProduct extends Component {
                 })}
               </div>
             )}
+            <div className="images">
              {product.images.map((image, index) => {
                   return <img id={`image-${index}`} alt={image.altText} src={image.src} className={` t-${index}`} onClick={e => this.changeImage(e)} />;
                   })}
+                  </div>
           </div>
           <div className="col-right pa3 sticky">
             <h2>{product.attrs.title.value}</h2>

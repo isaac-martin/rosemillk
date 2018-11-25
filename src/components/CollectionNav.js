@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {NavLink} from 'react-router-dom';
 import {tween, styler, easing} from 'popmotion';
 import {interpolate} from 'polymorph-js';
-import {CSSTransition, TransitionGroup} from 'react-transition-group';
+import {CSSTransition} from 'react-transition-group';
 
 class CollectionNav extends Component {
   constructor() {
@@ -50,7 +50,7 @@ class CollectionNav extends Component {
             fill="#D8D8D8"
             d="M576.9,420.3c-81.1,76-112,93.1-144.1,165.8c-43.3,97.5-225.5,67.1-443.3,16.6L2.2,2l635.4-2
       C673.1,273.5,657.8,344.4,576.9,420.3L576.9,420.3"
-            fill-rule="evenodd"
+            fillRule="evenodd"
           />
         </svg>
         <svg id="container" viewBox="0 0 800 800" preserveAspectRatio="none">
@@ -64,8 +64,8 @@ class CollectionNav extends Component {
           Shop
           <svg viewBox="0 0 138 138" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
+              fillRule="evenodd"
+              clipRule="evenodd"
               d="M138 69c0 38.108-30.892 69-69 69-38.108 0-69-30.892-69-69C0 30.892 30.892 0 69 0c38.108 0 69 30.892 69 69zm-69 62c34.242 0 62-27.758 62-62 0-34.242-27.758-62-62-62C34.758 7 7 34.758 7 69c0 34.242 27.758 62 62 62z"
               fill="#fff"
             />

@@ -732,7 +732,8 @@ footer a {
 }
 
 .scrollable {
-  padding-left: 150px;
+  display:flex;
+  flex-direction: row;
   img {
     margin-bottom: 10px;
   }

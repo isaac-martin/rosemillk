@@ -42,7 +42,7 @@ class Instagram extends Component {
         <div className="instagramGrid">
           {this.state.instagram.map(post => {
             return (
-              <a style={{backgroundImage: `url(${post.images.standard_resolution.url})`}} href={post.link} className="instagramPost" target="_blank" rel="noopener noreferrer">
+              <a key={post.id} style={{backgroundImage: `url(${post.images.standard_resolution.url})`}} href={post.link} className="instagramPost" target="_blank" rel="noopener noreferrer">
                 <svg viewBox="0 0 1 1" />
               </a>
             );

@@ -29,7 +29,7 @@ class Footer extends Component {
             </NavLink>
           </li>
           <li className="mh2">
-            <a href="https://instagram.com/rosemi.lk" target="_blank" className="nav-link link">
+            <a href="https://instagram.com/rosemi.lk" target="_blank" rel="noopener noreferrer"className="nav-link link">
               Instagram
             </a>
           </li>
