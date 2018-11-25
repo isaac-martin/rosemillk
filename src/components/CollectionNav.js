@@ -8,7 +8,7 @@ class CollectionNav extends Component {
   constructor() {
     super();
     this.state = {
-      isCollectionNavOpen: false
+      isCollectionNavOpen: true
     };
   }
 
@@ -56,8 +56,9 @@ class CollectionNav extends Component {
         <svg id="container" viewBox="0 0 800 800" preserveAspectRatio="none">
           <path
             id="menu"
-            d="M357.4,38.2c-83.3,78.1-198.6-54.4-231.6,20.3C81.3,158.7,80.1,39.9-12,619.4L1,2l653.1-2
-      C656.5,71,440.6-39.7,357.4,38.2L357.4,38.2"
+            d="M576.9,420.3c-81.1,76-112,93.1-144.1,165.8c-43.3,97.5-225.5,67.1-443.3,16.6L2.2,2l635.4-2
+      C673.1,273.5,657.8,344.4,576.9,420.3L576.9,420.3"
+            fillRule="evenodd"
           />
         </svg>
         <span className={this.state.isCollectionNavOpen ? 'navOpen' : ''} onClick={evt => this.toggleCollectionMenu()}>
@@ -79,22 +80,22 @@ class CollectionNav extends Component {
           <CSSTransition in={true} appear={true} timeout={1000} classNames="fade">
             <ul className="list flex justify-center pl0 flex-column">
               <li className="">
-                <NavLink exact to="/collection/all-products" className="nav-link link">
+                <NavLink onClick={evt => this.toggleCollectionMenu()} exact to="/collection/all-products" className="nav-link link">
                   All Products
                 </NavLink>
               </li>
               <li className="">
-                <NavLink exact to="/collection/jewelry" className="nav-link link ">
+                <NavLink onClick={evt => this.toggleCollectionMenu()} exact to="/collection/jewelry" className="nav-link link ">
                   Jewelry
                 </NavLink>
               </li>
               <li className="">
-                <NavLink exact to="/collection/cups" className="nav-link link">
+                <NavLink onClick={evt => this.toggleCollectionMenu()} exact to="/collection/cups" className="nav-link link">
                   Cups
                 </NavLink>
               </li>
               <li className="">
-                <NavLink exact to="/collection/vases" className="nav-link link ">
+                <NavLink onClick={evt => this.toggleCollectionMenu()} exact to="/collection/vases" className="nav-link link ">
                   Vases &amp; Planters
                 </NavLink>
               </li>

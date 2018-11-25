@@ -6,10 +6,6 @@ import '.././css/header.scss';
 import CollectionNav from './CollectionNav';
 
 class Header extends Component {
-  // constructor() {
-  //   super();
-  // }
-
   render() {
     const cartCount = this.props.cartCount.length;
     return (

@@ -1,18 +1,18 @@
-import React, { Component } from "react";
-import { Route } from "react-router-dom";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import Home from "./components/Home";
-import Cart from "./components/Cart";
-import CollectionArchive from "./components/Collection";
-import ProductView from "./components/ProductView";
-import About from "./components/About";
-import Policies from "./components/Policies";
-import Contact from "./components/Contact";
+import React, {Component} from 'react';
+import {Route} from 'react-router-dom';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import Home from './components/Home';
+import Cart from './components/Cart';
+import CollectionArchive from './components/Collection';
+import ProductView from './components/ProductView';
+import About from './components/About';
+import Policies from './components/Policies';
+import Contact from './components/Contact';
 
-import Instagram from "./components/Instagram";
+import Instagram from './components/Instagram';
 
-import "./css/default.scss";
+import './css/default.scss';
 
 class App extends Component {
   constructor() {
@@ -20,13 +20,13 @@ class App extends Component {
 
     this.state = {
       isCartOpen: false,
-      checkout: { lineItems: [] },
+      checkout: {lineItems: []},
       products: [],
       collections: [],
       shop: {}
     };
 
-    this.oldClass = document.querySelector("body").classList[0];
+    this.oldClass = document.querySelector('body').classList[0];
     this.handleCartToggle = this.handleCartToggle.bind(this);
     this.updateCheckout = this.updateCheckout.bind(this);
     this.addVariantToCart = this.addVariantToCart.bind(this);
@@ -35,21 +35,21 @@ class App extends Component {
   }
 
   fetchInventory() {
+    // let query = '{ shop { name } }';
+    // console.log(JSON.stringify(query));
 
-    let query = '{ shop { name } }';
-console.log(JSON.stringify(query));
-
-fetch('https://myrosemilk.myshopify.com/admin/api/graphql', {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/graphql",
-            "X-Shopify-Storefront-Access-Token": "1791e1adeded40d40bdc58573d2bf4b4"
-        },
-        body: JSON.stringify(query),
+    fetch('https://myrosemilk.myshopify.com/admin/api/graphql.json', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Shopify-Storefront-Access-Token': '1791e1adeded40d40bdc58573d2bf4b4'
+      },
+      body: JSON.stringify()
     })
-    .then(res => res.json())
-    .then(res => console.log(res.data));
+      .then(res => res.json())
+      .then(res => console.log(res.data));
   }
+
   componentWillMount() {
     this.fetchInventory();
     this.props.client.collection.fetchAllWithProducts().then(res => {
@@ -60,7 +60,7 @@ fetch('https://myrosemilk.myshopify.com/admin/api/graphql', {
 
     this.props.client.checkout.create().then(res => {
       this.setState({
-        checkout: JSON.parse(localStorage.getItem("cart")) || res
+        checkout: JSON.parse(localStorage.getItem('cart')) || res
       });
     });
 
@@ -82,52 +82,44 @@ fetch('https://myrosemilk.myshopify.com/admin/api/graphql', {
       isCartOpen: true
     });
 
-    const lineItemsToAdd = [{ variantId, quantity: parseInt(quantity, 10) }];
+    const lineItemsToAdd = [{variantId, quantity: parseInt(quantity, 10)}];
     const checkoutId = this.state.checkout.id;
 
-    return this.props.client.checkout
-      .addLineItems(checkoutId, lineItemsToAdd)
-      .then(res => {
-        this.setState(
-          {
-            checkout: res
-          },
-          () => localStorage.setItem("cart", JSON.stringify(res))
-        );
-      });
+    return this.props.client.checkout.addLineItems(checkoutId, lineItemsToAdd).then(res => {
+      this.setState(
+        {
+          checkout: res
+        },
+        () => localStorage.setItem('cart', JSON.stringify(res))
+      );
+    });
   }
 
   updateQuantityInCart(lineItemId, quantity) {
     const checkoutId = this.state.checkout.id;
-    const lineItemsToUpdate = [
-      { id: lineItemId, quantity: parseInt(quantity, 10) }
-    ];
+    const lineItemsToUpdate = [{id: lineItemId, quantity: parseInt(quantity, 10)}];
 
-    return this.props.client.checkout
-      .updateLineItems(checkoutId, lineItemsToUpdate)
-      .then(res => {
-        this.setState(
-          {
-            checkout: res
-          },
-          () => localStorage.setItem("cart", JSON.stringify(res))
-        );
-      });
+    return this.props.client.checkout.updateLineItems(checkoutId, lineItemsToUpdate).then(res => {
+      this.setState(
+        {
+          checkout: res
+        },
+        () => localStorage.setItem('cart', JSON.stringify(res))
+      );
+    });
   }
 
   removeLineItemInCart(lineItemId) {
     const checkoutId = this.state.checkout.id;
 
-    return this.props.client.checkout
-      .removeLineItems(checkoutId, [lineItemId])
-      .then(res => {
-        this.setState(
-          {
-            checkout: res
-          },
-          () => localStorage.setItem("cart", JSON.stringify(res))
-        );
-      });
+    return this.props.client.checkout.removeLineItems(checkoutId, [lineItemId]).then(res => {
+      this.setState(
+        {
+          checkout: res
+        },
+        () => localStorage.setItem('cart', JSON.stringify(res))
+      );
+    });
   }
 
   handleCartToggle() {
@@ -141,70 +133,28 @@ fetch('https://myrosemilk.myshopify.com/admin/api/graphql', {
       {
         checkout: res
       },
-      () => localStorage.setItem("cart", JSON.stringify(res))
+      () => localStorage.setItem('cart', JSON.stringify(res))
     );
   }
 
   render() {
     return (
       <div className="App">
-        <Header
-          cartCount={this.state.checkout.lineItems}
-          toggleCart={this.handleCartToggle}
-        />
+        <Header cartCount={this.state.checkout.lineItems} toggleCart={this.handleCartToggle} />
         <div className="mainArea">
-          <Route
-            exact
-            path="/"
-            render={props => <Home oldClass={this.oldClass} {...props} />}
-          />
-          <Route
-            exact
-            path="/about"
-            render={props => (
-              <About oldClass={this.oldClass} {...props} {...this.state} />
-            )}
-          />
-          <Route
-            exact
-            path="/policies"
-            render={props => (
-              <Policies oldClass={this.oldClass} {...props} {...this.state} />
-            )}
-          />
-          <Route
-            exact
-            path="/contact"
-            render={props => (
-              <Contact oldClass={this.oldClass} {...props} {...this.state} />
-            )}
-          />
+          <Route exact path="/" render={props => <Home oldClass={this.oldClass} {...props} />} />
+          <Route exact path="/about" render={props => <About oldClass={this.oldClass} {...props} {...this.state} />} />
+          <Route exact path="/policies" render={props => <Policies oldClass={this.oldClass} {...props} {...this.state} />} />
+          <Route exact path="/contact" render={props => <Contact oldClass={this.oldClass} {...props} {...this.state} />} />
           <Route
             exact
             path="/product/:handle"
-            render={props => (
-              <ProductView
-                oldClass={this.oldClass}
-                {...props}
-                {...this.state}
-                updateCheckout={this.updateCheckout}
-                client={this.props.client}
-                handleCartOpen={this.handleCartToggle}
-              />
-            )}
+            render={props => <ProductView oldClass={this.oldClass} {...props} {...this.state} updateCheckout={this.updateCheckout} client={this.props.client} handleCartOpen={this.handleCartToggle} />}
           />
           <Route
             exact
             path="/collection/:handle"
-            render={props => (
-              <CollectionArchive
-                oldClass={this.oldClass}
-                {...props}
-                {...this.state}
-                collections={this.state.collections}
-                products={this.state.products}
-              />
-            )}
+            render={props => <CollectionArchive oldClass={this.oldClass} {...props} {...this.state} collections={this.state.collections} products={this.state.products} />}
           />
         </div>
         <Cart
