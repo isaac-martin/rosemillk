@@ -35,29 +35,19 @@ class App extends Component {
   }
 
   fetchInventory() {
-    let data = `
-      query {
-        shop {
-          name
-          primaryDomain {
-            url
-            host
-          }
-        }
-      }
+    let query = `
+      { shop { name } }
     `;
-
     fetch("https://myrosemilk.myshopify.com/admin/api/graphql", {
       method: "POST",
       headers: {
         "X-Shopify-Storefront-Access-Token": "1791e1adeded40d40bdc58573d2bf4b4",
         "Content-Type": "application/graphql",
-        "Access-Control-Allow-Origin": "*"
       },
-      body: JSON.stringify({ query: data })
+      body: JSON.stringify(query)
     })
-      .then(res => res.json())
-      .then(res => console.log(res.data));
+    .then(res => res.json())
+    .then(res => console.log(res.data));
   }
   componentWillMount() {
     this.fetchInventory();
