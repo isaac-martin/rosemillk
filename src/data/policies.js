@@ -1,0 +1,3 @@
+const policies = '<h2>Policies</h2><p>Each piece is handmade by me and due to this, some variations may occur between each piece and the product photograph. This may differ in color, texture or size. I have tried to photograph as accurately as possible.</p><p>If you would like to return your piece, you will be responsible for the cost of return shipping as well as packing it safely. Original shipping charges are not refunded unless I\'ve made a mistake, the piece differs widely from photography or it arrives broken.</p>'
+
+export default policies;

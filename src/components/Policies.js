@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {bodyCol} from '../util.js';
 import Text from './Text.js';
+import policies from '../data/policies.js';
+
 
 class Policies extends Component {
   constructor(props) {
@@ -17,7 +19,7 @@ class Policies extends Component {
   render() {
     return (
       <div className="Policies">
-        <Text data={this.state.pageData} />
+        <Text data={policies} />
       </div>
     );
   }

@@ -3,7 +3,7 @@
 display: grid;
   grid-column-gap: 30px;
    grid-template-columns: 1fr 1fr 1fr;
- img{  max-height: 85vh;
+ img{  max-width: 650px;
  }
 
  .col-left {
@@ -21,6 +21,7 @@ display: grid;
   top: 90px;
   cursor: pointer;
   margin-right: 10px; 
+  height: 100%;
   .thumbImage {
     width: 85px;
     height: 100px;

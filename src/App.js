@@ -34,24 +34,8 @@ class App extends Component {
     this.removeLineItemInCart = this.removeLineItemInCart.bind(this);
   }
 
-  fetchInventory() {
-    // let query = '{ shop { name } }';
-    // console.log(JSON.stringify(query));
-
-    fetch('https://myrosemilk.myshopify.com/admin/api/graphql.json', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Shopify-Storefront-Access-Token': '1791e1adeded40d40bdc58573d2bf4b4'
-      },
-      body: JSON.stringify()
-    })
-      .then(res => res.json())
-      .then(res => console.log(res.data));
-  }
 
   componentWillMount() {
-    this.fetchInventory();
     this.props.client.collection.fetchAllWithProducts().then(res => {
       this.setState({
         collections: res
@@ -64,7 +48,7 @@ class App extends Component {
       });
     });
 
-    this.props.client.product.fetchAll().then(res => {
+    this.props.client.product.fetchAll(100).then(res => {
       this.setState({
         products: res
       });

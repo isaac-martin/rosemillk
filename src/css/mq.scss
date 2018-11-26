@@ -1,0 +1,50 @@
+
+// Grid
+$grid-small: 575px;
+$grid-medium: 47.97em; // 767px
+$grid-large: 61.85em; // 990px/
+$grid-widescreen: 87.5em; // 1400px
+$grid-max-width: 73.75em; // 1180px
+$grid-gutter: 30px;
+
+// Breakpoints used with the media-query mixin
+$mobile: 'mobile';
+$small: 'small';
+$small-down: 'small-down';
+$medium: 'medium';
+$medium-down: 'medium-down';
+$medium-up: 'medium-up';
+$large: 'large';
+$large-down: 'large-down';
+$large-up: 'large-up';
+$widescreen: 'widescreen';
+
+$breakpoints: (
+  $mobile '(max-width: #{$grid-small})',
+  $small '(min-width: #{$grid-small - 1}) and (max-width: #{$grid-medium})',
+  $small-down '(max-width: #{$grid-medium})',
+  $medium '(min-width: #{$grid-medium}) and (max-width: #{$grid-large - .0625})',
+  $medium-down '(max-width: #{$grid-large - .0625})',
+  $medium-up '(min-width: #{$grid-medium})',
+  $large '(min-width: #{$grid-large}) and (max-width: #{$grid-widescreen - .0625})',
+  $large-down '(max-width: #{$grid-widescreen - .0625})',
+  $large-up '(min-width: #{$grid-large})',
+  $widescreen '(min-width: #{$grid-widescreen})'
+);
+
+@mixin media-query($media-query) {
+  $breakpoint-found: false;
+
+  @each $breakpoint in $breakpoints {
+    $name: nth($breakpoint, 1);
+    $declaration: nth($breakpoint, 2);
+
+    @if $media-query == $name and $declaration {
+      $breakpoint-found: true;
+
+      @media only screen and #{$declaration} {
+        @content;
+      }
+    }
+  }
+}

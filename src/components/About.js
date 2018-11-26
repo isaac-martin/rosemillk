@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {bodyCol} from '../util.js';
 import Text from './Text.js';
+import about from '../data/about.js';
+
 import Draggable from './draggable.js';
 
 import Headshot from '.././imgs/headshot.jpg';
@@ -8,9 +10,6 @@ import Headshot from '.././imgs/headshot.jpg';
 class About extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      pageData: 'test'
-    };
   }
 
   componentDidMount() {
@@ -20,7 +19,7 @@ class About extends Component {
   render() {
     return (
       <div className="About">
-        <Text data={this.state.pageData} />
+        <Text data={about} />
         <Draggable src={Headshot} />
       </div>
     );
