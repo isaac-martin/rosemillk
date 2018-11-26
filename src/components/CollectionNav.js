@@ -63,18 +63,8 @@ class CollectionNav extends Component {
         </svg>
         <span className={this.state.isCollectionNavOpen ? 'navOpen' : ''} onClick={evt => this.toggleCollectionMenu()}>
           Shop
-          <svg viewBox="0 0 138 138" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-              fillRule="evenodd"
-              clipRule="evenodd"
-              d="M138 69c0 38.108-30.892 69-69 69-38.108 0-69-30.892-69-69C0 30.892 30.892 0 69 0c38.108 0 69 30.892 69 69zm-69 62c34.242 0 62-27.758 62-62 0-34.242-27.758-62-62-62C34.758 7 7 34.758 7 69c0 34.242 27.758 62 62 62z"
-              fill="#fff"
-            />
-            <path
-              d="M49.483 61.571c3.86 0 6.991-3.13 6.991-6.99a6.991 6.991 0 1 0-6.991 6.99zM87.43 61.571a6.99 6.99 0 1 0 0-13.98 6.991 6.991 0 0 0 0 13.98zM68.456 98.94c-19.903 0-24-17.396-24-17.396h-9.952s6.145 26.678 33.952 26.678c27.514 0 33.952-26.678 33.952-26.678h-9.951s-4.098 17.395-24.001 17.395z"
-              fill="#fff"
-            />
-          </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 138 138"><g data-name="Layer 2"><g data-name="Layer 1"><path d="M138 69A69 69 0 1 1 69 0a69 69 0 0 1 69 69zm-69 62A62 62 0 1 0 7 69a62 62 0 0 0 62 62z" fill="#fff"/><path d="M68.46 100.44C47.61 100.44 43 82.07 43 81.89a1.5 1.5 0 0 1 2.92-.69c.16.66 4.11 16.24 22.54 16.24 7.78 0 13.93-2.74 18.3-8.14A22.81 22.81 0 0 0 91 81.2a1.5 1.5 0 0 1 2.92.69c-.05.18-4.61 18.55-25.46 18.55zM44.23 63.82a8.49 8.49 0 0 1 0-17 8.49 8.49 0 0 1 0 17zm0-3a5.49 5.49 0 0 0 0-11 5.49 5.49 0 0 0 0 11m48.95 2.25a8.49 8.49 0 1 1 8.52-8.49 8.46 8.46 0 0 1-8.55 8.49zm0-14a5.49 5.49 0 0 0 0 11 5.49 5.49 0 0 0 0-11z" fill="#fff"/></g></g></svg>
+
         </span>
         {this.state.isCollectionNavOpen && (
           <CSSTransition in={true} appear={true} timeout={1000} classNames="fade">
