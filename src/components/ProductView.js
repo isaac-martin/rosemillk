@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {bodyCol} from '../util.js';
+import Loader from './Loader.js';
 import {CSSTransition} from 'react-transition-group';
 
 const getSingleProduct = (products, handle) => {
@@ -87,7 +88,7 @@ class SingleProduct extends Component {
         </div>
       </CSSTransition>
     ) : (
-      <div>Loading</div>
+      <Loader />
     );
   }
 }

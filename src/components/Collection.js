@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import {bodyCol} from '../util.js';
+import Loader from './Loader.js';
+
 import {CSSTransition} from 'react-transition-group';
 
 import Product from './Product';
@@ -24,13 +26,13 @@ class CollectionArchive extends Component {
   render() {
     let products;
     if (this.props.collections.length) {
-      const collection = getCollection(this.props.collections, this.props.match.params.handle);
+      const collection = getCollection(this.props.collections, this.props.match.params.handle || 'all-products');
       products = collection.products.map(product => {
         return <Product client={this.props.client} key={product.id.toString()} product={product} />;
       });
       // products = 'collection';
     } else {
-      products = 'loading';
+      products = <Loader/>;
     }
 
     return (
