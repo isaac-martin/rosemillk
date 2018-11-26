@@ -75,3 +75,10 @@
 
  }
 }
+
+
+.Product__buy {
+   @include media-query($mobile) {
+    margin-bottom: 30px;
+  }
+}
