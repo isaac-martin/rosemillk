@@ -24,6 +24,7 @@ componentDidMount(){
   render() {
     return (
       <div className="Home">
+      <div className="dragImages">
         <Draggable 
         className="img1"
         src={home2} />
@@ -42,6 +43,7 @@ componentDidMount(){
         <Draggable 
         className="svg3"
         src={smile} />
+        </div>
       </div>
     );
   }
