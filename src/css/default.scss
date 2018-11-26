@@ -860,20 +860,27 @@ footer ul {
 .Home {
   width: 100%;
   position: relative;
-  min-height: 100vh;
-  max-height: 100vh;
+  min-height: 80vh;
+  max-height: 80vh;
   overflow: hidden;
+
 
   .drag {
     width: 300px;
     position: absolute;
     min-height: inherit;
+    display: flex;
+    align-items: center;
   }
 
   .img1{
     left: 20px; 
     top: 80px;
     width: 400px;
+
+        @include media-query($mobile) {
+display: none;
+  }
   }
 
   .img2{
@@ -885,17 +892,28 @@ footer ul {
     width: 500px;
     left: 350px;
     bottom: 0px;
+
+@include media-query($mobile) {
+   left: 0;
+   width: 250px;
+   align-items: flex-end;
+  }
+
   }
   .svg1 {
     width: 100px;
     right: 0px;
     bottom: 0px;
+
+    @include media-query($mobile) {
+   align-items: flex-end;
+  }
   }
 
    .svg2 {
     width: 180px;
-    left: 520px; 
-    top: 490px;
+    left: 680px; 
+    top: 170px;
   }
 
    .svg3 {
