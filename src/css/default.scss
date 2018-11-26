@@ -855,3 +855,51 @@ footer ul {
     transform: rotate(360deg);
   }
 }
+
+
+.Home {
+  width: 100%;
+  position: relative;
+  min-height: 100vh;
+  max-height: 100vh;
+
+  .drag {
+    width: 300px;
+    position: absolute;
+    min-height: inherit;
+  }
+
+  .img1{
+    left: 20px; 
+    top: 80px;
+    width: 400px;
+  }
+
+  .img2{
+    right: 20px; 
+    bottom: 80px;
+  }
+
+  .img3 {
+    width: 500px;
+    left: 350px;
+    bottom: 0px;
+  }
+  .svg1 {
+    width: 100px;
+    right: 0px;
+    bottom: 0px;
+  }
+
+   .svg2 {
+    width: 180px;
+    left: 520px; 
+    top: 490px;
+  }
+
+   .svg3 {
+    width: 100px;
+    bottom: 0px;
+    left: 0px;
+  }
+}

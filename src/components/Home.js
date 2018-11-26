@@ -1,6 +1,13 @@
 import React, {Component} from 'react';
 import Draggable from './draggable.js';
 
+import home1 from '.././imgs/home1.jpg';
+import home2 from '.././imgs/home2.jpg';
+import home3 from '.././imgs/home3.jpg';
+import smile from '.././imgs/smile.svg';
+
+
+
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -9,7 +16,24 @@ class Home extends Component {
   render() {
     return (
       <div className="Home">
-        {/* <Draggable src="https://static1.squarespace.com/static/5b475b2c50a54f54f9b4e1dc/5b4a5c2d88251b376ea105c1/5b4a5c4703ce643303f960e7/1531599999503/DSCF2776.jpg?format=1000w" /> */}
+        <Draggable 
+        className="img1"
+        src={home2} />
+        <Draggable 
+        className="img2"
+        src={home1} />
+        <Draggable 
+        className="img3"
+        src={home3} />
+        <Draggable 
+        className="svg1"
+        src={smile} />
+        <Draggable 
+        className="svg2"
+         src={smile} />
+        <Draggable 
+        className="svg3"
+        src={smile} />
       </div>
     );
   }
