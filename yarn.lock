@@ -8173,6 +8173,11 @@ react-error-overlay@^5.1.0:
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-5.1.0.tgz#c516995a5652e7bfbed8b497910d5280df74a7e8"
   integrity sha512-akMy/BQT5m1J3iJIHkSb4qycq2wzllWsmmolaaFVnb+LPV9cIJ/nTud40ZsiiT0H3P+/wXIdbjx2fzF61OaeOQ==
 
+react-ga@^2.5.5-0:
+  version "2.5.5-0"
+  resolved "https://registry.yarnpkg.com/react-ga/-/react-ga-2.5.5-0.tgz#c903f49237e572e62f091fafb708ec8dc3d00498"
+  integrity sha512-HZ4V9qfEG3L6c0AE1I2oeXtRvGj3+dygKfaEUhC80DHvA7oD88sn40mE9zo9FVSQ+eil3+CnhLqDPVKMkHDrmA==
+
 react-is@^16.3.2:
   version "16.6.3"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.6.3.tgz#d2d7462fcfcbe6ec0da56ad69047e47e56e7eac0"

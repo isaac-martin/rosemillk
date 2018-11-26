@@ -683,7 +683,10 @@ h1 {
 
 
 .instagramWrap {
-margin-top: 120px;
+margin-top: 100px;
+ @include media-query($mobile) {
+margin-top: 20px;
+  }
 .link {
   text-align: left;
   display: block;
@@ -812,6 +815,10 @@ footer ul {
   position: sticky;
   height: 100vh;
   top: 0;
+
+   @include media-query($mobile) {
+height: auto;
+  }
 }
 
 
@@ -860,8 +867,8 @@ footer ul {
 .Home {
   width: 100%;
   position: relative;
-  min-height: 80vh;
-  max-height: 80vh;
+  min-height: 85vh;
+  max-height: 85vh;
   overflow: hidden;
 
 

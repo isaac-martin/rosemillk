@@ -6,13 +6,24 @@ import home2 from '.././imgs/home2.jpg';
 import home3 from '.././imgs/home3.jpg';
 import smile from '.././imgs/smile.svg';
 
+import ReactGA from 'react-ga';
 
 
 class Home extends Component {
   constructor(props) {
     super(props);
+
+    function initializeReactGA() {
+    ReactGA.initialize('UA-129800945-1');
+    ReactGA.pageview('/homepage');
+}
+
   }
 
+componentDidMount(){
+  this.initializeReactGA();
+}
+   
   render() {
     return (
       <div className="Home">
