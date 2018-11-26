@@ -12,13 +12,12 @@ import ReactGA from 'react-ga';
 class Home extends Component {
   constructor(props) {
     super(props);
+  }
 
-    function initializeReactGA() {
+  initializeReactGA = () => {
     ReactGA.initialize('UA-129800945-1');
     ReactGA.pageview('/homepage');
 }
-
-  }
 
 componentDidMount(){
   this.initializeReactGA();
