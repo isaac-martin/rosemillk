@@ -8,7 +8,7 @@ class CollectionNav extends Component {
   constructor() {
     super();
     this.state = {
-      isCollectionNavOpen: true
+      isCollectionNavOpen: false
     };
   }
 
