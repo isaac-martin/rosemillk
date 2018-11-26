@@ -51,10 +51,10 @@ class SingleProduct extends Component {
     const id = e.target.dataset.thumb;
     const element = document.getElementById(id);
     const y = element.getBoundingClientRect().top + window.scrollY - 90;
-  window.scroll({
-  top: y,
-  behavior: 'smooth'
-});
+    window.scroll({
+      top: y,
+      behavior: 'smooth'
+    });
   };
 
   render() {
@@ -66,24 +66,28 @@ class SingleProduct extends Component {
             {product.images.length > 1 && (
               <div className="thumbnails">
                 {product.images.map((image, index) => {
-                  return <img data-thumb={`image-${index}`}alt={image.altText} src={image.src} className={`thumbImage t-${index}`} onClick={e => this.changeImage(e)} />;
+                  return <img data-thumb={`image-${index}`} alt={image.altText} src={image.src} className={`thumbImage t-${index}`} onClick={e => this.changeImage(e)} />;
                 })}
               </div>
             )}
             <div className="images">
-             {product.images.map((image, index) => {
-                  return <img id={`image-${index}`} alt={image.altText} src={image.src} className={` t-${index}`} onClick={e => this.changeImage(e)} />;
-                  })}
-                  </div>
+              {product.images.map((image, index) => {
+                return <img id={`image-${index}`} alt={image.altText} src={image.src} className={` t-${index}`} onClick={e => this.changeImage(e)} />;
+              })}
+            </div>
           </div>
           <div className="col-right pa3 sticky">
             <h2>{product.attrs.title.value}</h2>
             <div dangerouslySetInnerHTML={{__html: product.attrs.descriptionHtml.value}} />
 
             <p className="prodPrice">{product.attrs.variants[0].price}</p>
-            <button className="Product__buy button" onClick={() => this.addVariantToCart(product.variants[0].id)}>
-              Add to Cart
-            </button>
+            {product.variants[0].available ? (
+              <button className="Product__buy button" onClick={() => this.addVariantToCart(product.variants[0].id)}>
+                Add to Cart
+              </button>
+            ) : (
+              <h3 className="soldOut">Sorry Sold Out! More coming soon, or contact to comission a piece</h3>
+            )}
           </div>
         </div>
       </CSSTransition>
