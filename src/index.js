@@ -10,7 +10,7 @@ import Client from 'shopify-buy';
 
 const client = Client.buildClient({
   storefrontAccessToken: 'f1166bffb632479b45464b93f1b8f0fd',
-  domain: 'myrosemilk.myshopify.com'
+  domain: 'checkout.rosemi.lk'
 });
 
 ReactDOM.render(
