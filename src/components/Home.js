@@ -10,9 +10,7 @@ import ReactGA from 'react-ga';
 
 
 class Home extends Component {
-  constructor(props) {
-    super(props);
-  }
+
 
   initializeReactGA = () => {
     ReactGA.initialize('UA-129800945-1');

@@ -8,10 +8,6 @@ import Draggable from './draggable.js';
 import Headshot from '.././imgs/headshot.jpg';
 
 class About extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     bodyCol(this.props.oldClass);
   }

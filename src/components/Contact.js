@@ -5,10 +5,6 @@ import contact from '../data/contact.js';
 
 
 class Contact extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     bodyCol(this.props.oldClass);
   }
