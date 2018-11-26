@@ -1,10 +1,25 @@
 .ProductView {
   width: 100%;
-display: grid;
+  display: grid;
   grid-column-gap: 30px;
    grid-template-columns: 1fr 1fr 1fr;
 
-   
+   .images{
+  @include media-query($mobile) {
+    display: flex;
+    flex-direction: row;
+    height: 60vh;
+    overflow-y: scroll;
+    width: 100vw;
+    position: absolute;
+    transform: translateX(-30px);
+
+    img {
+      max-width: inherit;
+    }
+  }
+}
+
  img{  
    max-width: 650px;
     @include media-query($medium-down) {
@@ -26,6 +41,10 @@ display: grid;
       grid-column-start: 1;
    grid-column-end: 4;
   }
+   @include media-query($mobile) {
+    margin-top: 65vh;
+  }
+  
  }
 
  .thumbnails {
