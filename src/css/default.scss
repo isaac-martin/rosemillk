@@ -869,6 +869,8 @@ height: auto;
   position: relative;
   min-height: 85vh;
   max-height: 85vh;
+  max-width: 100vw;
+  overflow: hidden;
 
   .drag {
     width: 300px;
