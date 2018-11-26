@@ -1,9 +1,14 @@
-
+@import 'mq';
 
 .rosemilk_logo {
   width: 220px;
-      margin-left: 60px;
+  margin-left: 60px;
   fill: white;
+
+   @include media-query($mobile) {
+   width: 150px;
+  }
+
 }
 
 .mainHeader {
@@ -11,4 +16,10 @@
   left: 0;
   right: 0;
   z-index: 10;
+   padding: 10px 30px;
+
+   @include media-query($medium-down) {
+      padding: 10px 15px;
+  }
 }
+

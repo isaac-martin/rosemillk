@@ -4,6 +4,8 @@
 
 @import 'animations';
 @import 'mq';
+@import 'product';
+
 
 
 *, *:before, *:after {
@@ -76,6 +78,7 @@ h1 {
 
 .Product-wrapper {
   max-width: 1000px;
+  width: 100%;
   margin: 40px auto 0;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -103,6 +106,15 @@ h1 {
     // grid-row-start: 3;
     grid-row-end: span 2;
   }
+.Product {
+   @include media-query($medium-down) {
+    grid-column-start: 1;
+    grid-column-end: 5;
+    grid-row-start: auto;
+    grid-row-end: span 1;
+  }
+}
+
 
 }
 
@@ -532,7 +544,12 @@ h1 {
   position: fixed;
   top: 30px;
   left: 30px;
-z-index: 10;
+
+    @include media-query($medium-down) {
+      left: 15px;
+      top: 20px;
+  }
+  z-index: 10;
   ul, span {
     position: relative;
     z-index: 2
@@ -542,6 +559,10 @@ z-index: 10;
     color: white;
     margin: 5px 0;
     font-size: 22px;
+
+     @include media-query($medium-down) {
+   font-size: 18px;
+  }
     font-weight: bold;
     a {color: white;}
   }
@@ -677,9 +698,11 @@ margin-top: 100px;
 .instagramGrid {
     display: grid;
     grid-template-columns: repeat(8, 1fr);
-    // grid-gap: 20px 20px;
     padding: 0 20px;
-    // max-width: 1020px;
+
+    @include media-query($medium-down) {
+    grid-template-columns: repeat(4, 1fr);
+  }
 
     a {
       background-size: cover;
@@ -696,6 +719,9 @@ margin-top: 100px;
 .cart-count {
   color: white;
   font-size: 22px;
+     @include media-query($medium-down) {
+   font-size: 18px;
+  }
     font-weight: bold;
   span {
   border-radius: 50%;
@@ -732,16 +758,46 @@ footer a {
   color: white;
 }
 
+footer ul {
+  font-size: 26px;
+  margin: 30px 0 30px 15px;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+
+   @include media-query($medium-down) {
+   flex-direction: column;
+
+   li {
+     margin-bottom: 15px;
+   }
+  }
+
+  li {
+    margin-right: 30px;
+  }
+}
+
 
 .About {
   display: grid;
   grid-template-columns: 1fr 1fr;
   width: 100%;
   grid-gap: 20px;
+
+  @include media-query($medium-down) {
+   grid-template-columns: 1fr;
+  }
 }
 
 .drag {
   cursor: move;
+  min-height: 600px;
+}
+
+
+.inLink {
+  text-decoration: underline;
 }
 
 .scrollable {

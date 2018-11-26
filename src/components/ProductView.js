@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {bodyCol} from '../util.js';
-import '.././css/product.scss';
 import {CSSTransition} from 'react-transition-group';
 
 const getSingleProduct = (products, handle) => {

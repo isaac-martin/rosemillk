@@ -3,12 +3,29 @@
 display: grid;
   grid-column-gap: 30px;
    grid-template-columns: 1fr 1fr 1fr;
- img{  max-width: 650px;
+
+   
+ img{  
+   max-width: 650px;
+    @include media-query($medium-down) {
+    max-width: 100%;
  }
+}
 
  .col-left {
   grid-column-start: 1;
   grid-column-end: 3;
+
+  @include media-query($medium-down) {
+   grid-column-end: 4;
+  }
+ }
+
+ .col-right {
+    @include media-query($medium-down) {
+      grid-column-start: 1;
+   grid-column-end: 4;
+  }
  }
 
  .thumbnails {
@@ -22,6 +39,11 @@ display: grid;
   cursor: pointer;
   margin-right: 10px; 
   height: 100%;
+
+   @include media-query($medium-down) {
+    display:none;
+  }
+
   .thumbImage {
     width: 85px;
     height: 100px;
