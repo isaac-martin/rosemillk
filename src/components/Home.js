@@ -8,42 +8,25 @@ import smile from '.././imgs/smile.svg';
 
 import ReactGA from 'react-ga';
 
-
 class Home extends Component {
-
-
   initializeReactGA = () => {
     ReactGA.initialize('UA-129800945-1');
     ReactGA.pageview('/homepage');
-}
+  };
 
-componentDidMount(){
-  this.initializeReactGA();
-}
-   
+  componentDidMount() {
+    this.initializeReactGA();
+  }
+
   render() {
     return (
       <div className="Home">
-      <div className="dragImages">
-        <Draggable 
-        className="img1"
-        src={home2} />
-        <Draggable 
-        className="img2"
-        src={home1} />
-        <Draggable 
-        className="img3"
-        src={home3} />
-        <Draggable 
-        className="svg1"
-        src={smile} />
-        <Draggable 
-        className="svg2"
-         src={smile} />
-        <Draggable 
-        className="svg3"
-        src={smile} />
-        </div>
+        <Draggable className="img1" src={home2} />
+        <Draggable className="img2" src={home1} />
+        <Draggable className="img3" src={home3} />
+        <Draggable className="svg1" src={smile} />
+        <Draggable className="svg2" src={smile} />
+        <Draggable className="svg3" src={smile} />
       </div>
     );
   }
