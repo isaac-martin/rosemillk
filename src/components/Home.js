@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Draggable from './draggable.js';
+import Loader from './Loader.js';
 
 import home1 from '.././imgs/home1.jpg';
 import home2 from '.././imgs/home2.jpg';

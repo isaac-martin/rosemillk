@@ -1,10 +1,12 @@
 /* INITIALIZERS + DEFAULTS
  * ============================== */
-@import url('https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900,900i');
+
 
 @import 'animations';
 @import 'mq';
 @import 'product';
+@import 'fonts';
+
 
 
 
@@ -19,7 +21,7 @@ html {
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Playfair Display', sans-serif;
+  font-family: 'lackregular', sans-serif;
   font-weight: 400;
   color: white;
   background-color: #f1eee8;
@@ -29,7 +31,7 @@ body {
 
 h2 {
   font-size: 30px;
-  font-family: 'Playfair Display', sans-serif;
+  font-family: 'lackregular', sans-serif;
   font-weight: 900;
 }
 p {
@@ -142,12 +144,16 @@ h1 {
   display: block;
   margin-top: 25px;
   transition: all .5s ease;
+  border: 1px solid black;
+
+  &:hover {
+    background-color: transparent;
+    border: 1px solid white;
+  }
 }
 
-.button:hover,
-.button:focus {
-  background-color:black;
-}
+
+
 
 .button:disabled {
   background: #bfbfbf;
@@ -737,6 +743,7 @@ margin-top: 20px;
 
 .cart-count {
   color: white;
+  cursor: pointer;
   font-size: 22px;
      @include media-query($medium-down) {
    font-size: 18px;
@@ -750,6 +757,15 @@ margin-top: 20px;
     display: inline-block;
     text-align: center;
     line-height: 19px;
+  transition: all .5s ease;
+    line-height: 23px;
+}
+
+&:hover {
+  span {
+    width: 30px;
+    height: 30px;
+  }
 }
 }
 
@@ -846,34 +862,18 @@ height: auto;
   margin: 30px auto;
 }
 
-.lds-ring {
-  display: inline-block;
-  position: relative;
-  width: 64px;
-  height: 64px;
-}
-.lds-ring div {
+
+.smile-loader {
   box-sizing: border-box;
-  display: block;
   position: absolute;
-  width: 51px;
-  height: 51px;
-  margin: 6px;
-  border: 6px solid #fff;
-  border-radius: 50%;
-  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  border-color: #fff transparent transparent transparent;
+  top: calc(50vh - 200px);
+  left: calc(50vw - 50px);
+  width: 100px;
+  height: 100px;
+  animation: smile-loop 1.8s infinite;
 }
-.lds-ring div:nth-child(1) {
-  animation-delay: -0.45s;
-}
-.lds-ring div:nth-child(2) {
-  animation-delay: -0.3s;
-}
-.lds-ring div:nth-child(3) {
-  animation-delay: -0.15s;
-}
-@keyframes lds-ring {
+
+@keyframes smile-loop {
   0% {
     transform: rotate(0deg);
   }

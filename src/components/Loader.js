@@ -1,5 +1,10 @@
 import React from 'react';
+import smile from '.././imgs/smile.svg';
 
-const Loader = props => <div className="lds-ring"><div></div><div></div><div></div><div></div></div>;
+const Loader = () => (
+  <div className="smile-loader">
+    <img src={smile} />
+  </div>
+);
 
 export default Loader;
