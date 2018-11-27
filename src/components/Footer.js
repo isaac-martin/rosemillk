@@ -33,7 +33,9 @@ class Footer extends Component {
             </a>
           </li>
         </ul>
-        <p className="tc">&copy; {new Date().getFullYear()} Rosemilk</p>
+        <p className="tc">
+          &copy; {new Date().getFullYear()} Rosemilk | <a href="mailto:hi@rosemi.lk">hi@rosemi.lk</a>
+        </p>
       </footer>
     );
   }
