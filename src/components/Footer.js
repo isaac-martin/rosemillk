@@ -12,22 +12,22 @@ class Footer extends Component {
     return (
       <footer className="footer">
         <ul className="list">
-          <li>
+          <li className="footer-nav-link">
             <NavLink exact to="/about" className="nav-link link">
               About
             </NavLink>
           </li>
-          <li>
+          <li className="footer-nav-link">
             <NavLink exact to="/contact" className="nav-link link">
               Contact
             </NavLink>
           </li>
-          <li>
-            <NavLink exact to="/policies" className="nav-link link">
+          <li className="footer-nav-link">
+            <NavLink exact to="/policies" className="link">
               Shop Policies
             </NavLink>
           </li>
-          <li>
+          <li className="footer-nav-link">
             <a href="https://instagram.com/rosemi.lk" target="_blank" rel="noopener noreferrer" className="nav-link link">
               Instagram
             </a>

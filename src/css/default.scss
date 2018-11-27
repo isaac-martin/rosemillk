@@ -425,9 +425,16 @@ h1 {
   a {
     display: block;
     height: 100%;
-
     img {
        object-fit: cover;
+      transform: scale(1);
+ transition: all 1s ease;
+    }
+  }
+ 
+  :hover {
+    img {
+      transform: scale(0.97);
     }
   }
 }
@@ -436,13 +443,11 @@ h1 {
   font-size: 1.3rem;
   margin-top: 1rem;
   margin-bottom: 0.4rem;
-  opacity: 0.7;
 }
 
 .Product__price {
   display: block;
   font-size: 1.1rem;
-  opacity: 0.5;
   margin-bottom: 0.4rem;
 }
 
@@ -689,12 +694,23 @@ margin-top: 20px;
   }
 .link {
   text-align: left;
-  display: block;
+  display: inline-flex;
   margin-bottom: 10px;
   margin-top: 80px;
+  align-items: center;
+
+  transition: transform .5s ease;
+  transform: translateY(0);
+  &:hover {
+    transform: translateY(-20px); 
+  }
 
   svg {
     width: 80px;
+  }
+
+  span {
+    font-size: 22px;
   }
 }
 }
@@ -958,4 +974,21 @@ display: none;
 .soldOut {
       font-size: 22px;
     line-height: 1.6;
+}
+
+.nav-link {
+  transition: transform .5s ease;
+  transform: translateX(0);
+  &:hover {
+    transform: translateX(20px); 
+  }
+}
+
+
+.footer-nav-link {
+  transition: transform .5s ease;
+  transform: translateY(0);
+  &:hover {
+    transform: translateY(-10px); 
+  }
 }
