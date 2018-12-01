@@ -16,7 +16,7 @@ class Header extends Component {
           <SVG src={Logo} />
         </NavLink>
 
-        <p onClick={this.props.toggleCart} className="cart-count nav-link link f2">
+        <p onClick={this.props.toggleCart} className="cart-count link f2">
           Cart <span>{cartCount}</span>
         </p>
       </header>

@@ -34,7 +34,6 @@ class App extends Component {
     this.removeLineItemInCart = this.removeLineItemInCart.bind(this);
   }
 
-
   componentWillMount() {
     this.props.client.collection.fetchAllWithProducts().then(res => {
       this.setState({
@@ -128,7 +127,7 @@ class App extends Component {
         <div className="mainArea">
           <Route exact path="/" render={props => <Home oldClass={this.oldClass} {...props} />} />
           {/* <Route exact path="/" render={props => <CollectionArchive oldClass={this.oldClass} {...props} {...this.state} collections={this.state.collections} products={this.state.products}/>} /> */}
-         
+
           <Route exact path="/about" render={props => <About oldClass={this.oldClass} {...props} {...this.state} />} />
           <Route exact path="/policies" render={props => <Policies oldClass={this.oldClass} {...props} {...this.state} />} />
           <Route exact path="/contact" render={props => <Contact oldClass={this.oldClass} {...props} {...this.state} />} />

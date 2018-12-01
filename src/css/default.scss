@@ -1,10 +1,12 @@
 /* INITIALIZERS + DEFAULTS
  * ============================== */
-@import url('https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900,900i');
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900,900i|Josefin+Sans:300,400,700');
 
 @import 'animations';
 @import 'mq';
 @import 'product';
+@import 'fonts';
+
 
 
 
@@ -19,7 +21,11 @@ html {
 body {
   margin: 0;
   padding: 0;
+  // font-family: 'Noto Sans', sans-serif;
+  font-family: 'Josefin Sans', sans-serif;
+  font-family: 'lackregular', sans-serif;
   font-family: 'Playfair Display', sans-serif;
+
   font-weight: 400;
   color: white;
   background-color: #f1eee8;
@@ -29,7 +35,8 @@ body {
 
 h2 {
   font-size: 30px;
-  font-family: 'Playfair Display', sans-serif;
+  // font-family: 'lackregular', sans-serif;
+    // font-family: 'Playfair Display', sans-serif;
   font-weight: 900;
 }
 p {
@@ -142,12 +149,16 @@ h1 {
   display: block;
   margin-top: 25px;
   transition: all .5s ease;
+  border: 1px solid black;
+
+  &:hover {
+    background-color: transparent;
+    border: 1px solid white;
+  }
 }
 
-.button:hover,
-.button:focus {
-  background-color:black;
-}
+
+
 
 .button:disabled {
   background: #bfbfbf;
@@ -346,7 +357,7 @@ h1 {
 
 .Line-item__title {
   color: white;
-  font-size: 15px;
+  font-size: 19px;
   font-weight: 400;
 }
 
@@ -354,7 +365,7 @@ h1 {
   line-height: 23px;
   float: right;
   font-weight: bold;
-  font-size: 15px;
+  font-size: 17px;
   margin-right: 40px;
 }
 
@@ -425,24 +436,29 @@ h1 {
   a {
     display: block;
     height: 100%;
-
     img {
        object-fit: cover;
+      transform: scale(1);
+ transition: all 1s ease;
+    }
+  }
+ 
+  :hover {
+    img {
+      transform: scale(0.97);
     }
   }
 }
 
 .Product__title {
-  font-size: 1.3rem;
+  font-size: 1.6rem;
   margin-top: 1rem;
   margin-bottom: 0.4rem;
-  opacity: 0.7;
 }
 
 .Product__price {
   display: block;
-  font-size: 1.1rem;
-  opacity: 0.5;
+  font-size: 1.5rem;
   margin-bottom: 0.4rem;
 }
 
@@ -599,7 +615,7 @@ h1 {
 
 
 .mainArea {
-  min-height: 75vh;
+  min-height: 85vh;
   max-width: 1200px;
   margin: 0 auto;
     display: flex;
@@ -689,12 +705,33 @@ margin-top: 20px;
   }
 .link {
   text-align: left;
-  display: block;
+  display: inline-flex;
   margin-bottom: 10px;
   margin-top: 80px;
+  align-items: center;
+
+  transition: opacity .5s ease;
+  transform: translateY(0);
+
+  span {
+  transition: all .5s ease;
+  opacity: 0;
+  max-width: 0;
+  }
+  &:hover {
+    // transform: translateY(-20px); 
+  span {
+    max-width: 400px;
+    opacity: 1;
+  }
+  }
 
   svg {
     width: 80px;
+  }
+
+  span {
+    font-size: 22px;
   }
 }
 }
@@ -721,6 +758,7 @@ margin-top: 20px;
 
 .cart-count {
   color: white;
+  cursor: pointer;
   font-size: 22px;
      @include media-query($medium-down) {
    font-size: 18px;
@@ -734,6 +772,15 @@ margin-top: 20px;
     display: inline-block;
     text-align: center;
     line-height: 19px;
+  transition: all .5s ease;
+    line-height: 23px;
+}
+
+&:hover {
+  span {
+    width: 30px;
+    height: 30px;
+  }
 }
 }
 
@@ -757,6 +804,8 @@ body {
   transition: .8s ease background-color;
 }
 
+
+
 footer a {
   color: white;
 }
@@ -767,6 +816,7 @@ footer ul {
   padding: 0;
   display: flex;
   flex-direction: row;
+  justify-content: center;
 
    @include media-query($medium-down) {
    flex-direction: column;
@@ -827,34 +877,18 @@ height: auto;
   margin: 30px auto;
 }
 
-.lds-ring {
-  display: inline-block;
-  position: relative;
-  width: 64px;
-  height: 64px;
-}
-.lds-ring div {
+
+.smile-loader {
   box-sizing: border-box;
-  display: block;
   position: absolute;
-  width: 51px;
-  height: 51px;
-  margin: 6px;
-  border: 6px solid #fff;
-  border-radius: 50%;
-  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  border-color: #fff transparent transparent transparent;
+  top: calc(50vh - 200px);
+  left: calc(50vw - 50px);
+  width: 100px;
+  height: 100px;
+  animation: smile-loop 1.8s infinite;
 }
-.lds-ring div:nth-child(1) {
-  animation-delay: -0.45s;
-}
-.lds-ring div:nth-child(2) {
-  animation-delay: -0.3s;
-}
-.lds-ring div:nth-child(3) {
-  animation-delay: -0.15s;
-}
-@keyframes lds-ring {
+
+@keyframes smile-loop {
   0% {
     transform: rotate(0deg);
   }
@@ -866,23 +900,25 @@ height: auto;
 
 .Home {
   width: 100%;
-  position: relative;
+  position: absolute;
   min-height: 85vh;
   max-height: 85vh;
   max-width: 100vw;
-  overflow: hidden;
+  margin-bottom: 120px;
+  top: 12vh;
 
   .drag {
     width: 300px;
     position: absolute;
-    min-height: inherit;
-    display: flex;
-    align-items: center;
+    min-height: initial;
+    // min-height: inherit;
+    // display: flex;
+    // align-items: center;
   }
 
   .img1{
-    left: 20px; 
-    top: 80px;
+    left: 12vw; 
+    top: 60px;
     width: 400px;
 
         @include media-query($mobile) {
@@ -891,46 +927,83 @@ display: none;
   }
 
   .img2{
-    right: 20px; 
+    right: 10vw; 
     bottom: 80px;
+    width: 340px;
+        @include media-query($mobile) {
+   right: 3vw;
+    top: 80px;
+    width: 300px;
+  }
+     
   }
 
   .img3 {
-    width: 500px;
-    left: 350px;
+    width: 520px;
+    left: 35vw;
     bottom: 0px;
 
 @include media-query($mobile) {
-   left: 0;
+   left: 20px;
    width: 250px;
-   align-items: flex-end;
+   bottom: 15px;
   }
 
   }
   .svg1 {
     width: 100px;
-    right: 0px;
-    bottom: 0px;
+    right: 12vw;
+    bottom: 10px;
 
-    @include media-query($mobile) {
-   align-items: flex-end;
+        @include media-query($mobile) {
+display: none;
+
   }
   }
 
    .svg2 {
-    width: 180px;
-    left: 680px; 
+    width: 160px;
+    left: 55vw; 
     top: 170px;
+
+            @include media-query($mobile) {
+    left: 15px;
+    top: 0;
+    width: 130px;
+            }
+
   }
 
    .svg3 {
     width: 100px;
     bottom: 0px;
-    left: 0px;
+    left: 10vw;
+
+      @include media-query($mobile) {
+    right: 10px;
+    left: initial;
+            }
   }
 }
 
 .soldOut {
       font-size: 22px;
     line-height: 1.6;
+}
+
+.nav-link {
+  transition: transform .5s ease;
+  transform: translateX(0);
+  &:hover {
+    transform: translateX(20px); 
+  }
+}
+
+
+.footer-nav-link {
+  transition: transform .5s ease;
+  transform: translateY(0);
+  &:hover {
+    transform: translateY(-10px); 
+  }
 }
