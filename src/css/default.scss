@@ -457,9 +457,24 @@ h1 {
 }
 
 .Product__price {
-  display: block;
+  display: inline-block;
   font-size: 1.5rem;
   margin-bottom: 0.4rem;
+  margin-right: 0.3rem;
+}
+
+.soldOut-text {
+  display: inline-block;
+  font-size: 1.5rem;
+  display: none;
+}
+
+.isSoldOut .soldOut-text {
+  display: initial;
+}
+
+.isSoldOut .Product__price {
+ text-decoration: line-through;
 }
 
 .Product__option {

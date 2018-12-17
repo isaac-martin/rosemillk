@@ -17,6 +17,9 @@ class Cart extends Component {
       return <LineItem updateQuantityInCart={this.props.updateQuantityInCart} removeLineItemInCart={this.props.removeLineItemInCart} key={line_item.id.toString()} line_item={line_item} />;
     });
 
+    const subtotalPrice = this.props.checkout.subtotalPrice;
+    const shippingLeft = 75.0 - subtotalPrice;
+
     return (
       <div className={`Cart ${this.props.isCartOpen ? 'Cart--open' : ''}`}>
         <div className="Cart-side" />
@@ -27,6 +30,9 @@ class Cart extends Component {
           </button>
         </header>
         <ul className="Cart__line-items">{line_items}</ul>
+        <div className="Cart-info clearfix">
+          <span className="pricing">{shippingLeft >= 1 ? `Orders over $75 ship free. Spend $${shippingLeft} more to qualify.` : 'Your order has qualified for free shipping.'}</span>
+        </div>
         <footer className="Cart__footer">
           <div className="Cart-info clearfix">
             <div className="Cart-info__total Cart-info__small">Subtotal</div>
@@ -35,16 +41,7 @@ class Cart extends Component {
             </div>
           </div>
           <div className="Cart-info clearfix">
-            <div className="Cart-info__total Cart-info__small">Taxes</div>
-            <div className="Cart-info__pricing">
-              <span className="pricing">$ {this.props.checkout.totalTax}</span>
-            </div>
-          </div>
-          <div className="Cart-info clearfix">
-            <div className="Cart-info__total Cart-info__small">Total</div>
-            <div className="Cart-info__pricing">
-              <span className="pricing">$ {this.props.checkout.totalPrice}</span>
-            </div>
+            <div className="Cart-info__total Cart-info__small">Taxes calculated at checkout if applicable</div>
           </div>
           <button className="Cart__checkout button" onClick={this.openCheckout}>
             Checkout

@@ -86,7 +86,9 @@ class SingleProduct extends Component {
                 Add to Cart
               </button>
             ) : (
-              <h3 className="soldOut">Sorry Sold Out! More coming soon, or contact to comission a piece</h3>
+              <h3 className="soldOut">
+                Sorry Sold Out! To commission something similar contact us at <a href="mailto:hi@rosemi.lk">hi@rosemi.lk</a>
+              </h3>
             )}
           </div>
         </div>
