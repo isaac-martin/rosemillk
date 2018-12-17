@@ -34,18 +34,37 @@ class App extends Component {
     this.removeLineItemInCart = this.removeLineItemInCart.bind(this);
   }
 
+  createNewCheckout = () => {
+    this.props.client.checkout.create().then(res => {
+      this.setState({
+        checkout: res
+      });
+    });
+  };
+
   componentWillMount() {
+    const checkoutId = JSON.parse(localStorage.getItem('cartID'));
+    // const checkoutId = 'Z2lkOi8vc2hvcGlmeS9DaGVja291dC9hZjFkZjgzYTk3Y2MwNzMyZmQ0MjFiM2QwOGNhNzkxYz9rZXk9OWVkZDA4MDcyM2ExN2E5M2ZkOTA4OTk2NDllOTM3ZmY=';
+
     this.props.client.collection.fetchAllWithProducts().then(res => {
       this.setState({
         collections: res
       });
     });
 
-    this.props.client.checkout.create().then(res => {
-      this.setState({
-        checkout: JSON.parse(localStorage.getItem('cart')) || res
+    if (checkoutId.length > 1) {
+      this.props.client.checkout.fetch(checkoutId).then(res => {
+        if (!res.completedAt) {
+          this.setState({
+            checkout: res
+          });
+        } else {
+          this.createNewCheckout();
+        }
       });
-    });
+    } else {
+      this.createNewCheckout();
+    }
 
     this.props.client.product.fetchAll(100).then(res => {
       this.setState({
@@ -73,7 +92,7 @@ class App extends Component {
         {
           checkout: res
         },
-        () => localStorage.setItem('cart', JSON.stringify(res))
+        () => localStorage.setItem('cartID', JSON.stringify(res.id))
       );
     });
   }
@@ -87,7 +106,7 @@ class App extends Component {
         {
           checkout: res
         },
-        () => localStorage.setItem('cart', JSON.stringify(res))
+        () => localStorage.setItem('cartID', JSON.stringify(res.id))
       );
     });
   }
@@ -100,7 +119,7 @@ class App extends Component {
         {
           checkout: res
         },
-        () => localStorage.setItem('cart', JSON.stringify(res))
+        () => localStorage.setItem('cartID', JSON.stringify(res.id))
       );
     });
   }
@@ -116,7 +135,7 @@ class App extends Component {
       {
         checkout: res
       },
-      () => localStorage.setItem('cart', JSON.stringify(res))
+      () => localStorage.setItem('cartID', JSON.stringify(res.id))
     );
   }
 
