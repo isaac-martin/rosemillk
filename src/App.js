@@ -52,7 +52,7 @@ class App extends Component {
       });
     });
 
-    if (checkoutId.length > 1) {
+    if (checkoutId) {
       this.props.client.checkout.fetch(checkoutId).then(res => {
         if (!res.completedAt) {
           this.setState({
