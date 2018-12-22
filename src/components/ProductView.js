@@ -81,6 +81,9 @@ class SingleProduct extends Component {
             <div dangerouslySetInnerHTML={{__html: product.attrs.descriptionHtml.value}} />
 
             <p className="prodPrice">{product.attrs.variants[0].price}</p>
+
+            <p style={{fontSize: '24px'}}>Hi! I am away on vacation until the 12th of January, all orders placed between now and then will ship on the 14th. Thanks ☻</p>
+
             {product.variants[0].available ? (
               <button className="Product__buy button" onClick={() => this.addVariantToCart(product.variants[0].id)}>
                 Add to Cart
