@@ -44,7 +44,6 @@ class App extends Component {
 
   componentWillMount() {
     const checkoutId = JSON.parse(localStorage.getItem('cartID'));
-    // const checkoutId = 'Z2lkOi8vc2hvcGlmeS9DaGVja291dC9hZjFkZjgzYTk3Y2MwNzMyZmQ0MjFiM2QwOGNhNzkxYz9rZXk9OWVkZDA4MDcyM2ExN2E5M2ZkOTA4OTk2NDllOTM3ZmY=';
 
     this.props.client.collection.fetchAllWithProducts().then(res => {
       this.setState({
