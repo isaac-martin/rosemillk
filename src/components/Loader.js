@@ -3,7 +3,7 @@ import smile from '.././imgs/smile.svg';
 
 const Loader = () => (
   <div className="smile-loader">
-    <img src={smile} />
+    <img alt="loader" src={smile} />
   </div>
 );
 
