@@ -51,7 +51,6 @@ class App extends Component {
       });
     });
 
-
     if (checkoutId) {
       this.props.client.checkout.fetch(checkoutId).then(res => {
         if (!res.completedAt) {
