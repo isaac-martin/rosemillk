@@ -98,6 +98,11 @@ class CollectionNav extends Component {
                   Vases &amp; Planters
                 </NavLink>
               </li>
+              <li className="nav-link">
+                <NavLink onClick={evt => this.toggleCollectionMenu()} exact to="/collection/etc" className="nav-link link ">
+                 Etc.
+                </NavLink>
+              </li>
             </ul>
           </CSSTransition>
         )}

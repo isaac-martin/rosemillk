@@ -51,6 +51,7 @@ class App extends Component {
       });
     });
 
+
     if (checkoutId) {
       this.props.client.checkout.fetch(checkoutId).then(res => {
         if (!res.completedAt) {
@@ -149,24 +150,10 @@ class App extends Component {
           <Route exact path="/about" render={props => <About oldClass={this.oldClass} {...props} {...this.state} />} />
           <Route exact path="/policies" render={props => <Policies oldClass={this.oldClass} {...props} {...this.state} />} />
           <Route exact path="/contact" render={props => <Contact oldClass={this.oldClass} {...props} {...this.state} />} />
-          <Route
-            exact
-            path="/product/:handle"
-            render={props => <ProductView oldClass={this.oldClass} {...props} {...this.state} updateCheckout={this.updateCheckout} client={this.props.client} handleCartOpen={this.handleCartToggle} />}
-          />
-          <Route
-            exact
-            path="/collection/:handle"
-            render={props => <CollectionArchive oldClass={this.oldClass} {...props} {...this.state} collections={this.state.collections} products={this.state.products} />}
-          />
+          <Route exact path="/product/:handle" render={props => <ProductView oldClass={this.oldClass} {...props} {...this.state} updateCheckout={this.updateCheckout} client={this.props.client} handleCartOpen={this.handleCartToggle} />} />
+          <Route exact path="/collection/:handle" render={props => <CollectionArchive oldClass={this.oldClass} {...props} {...this.state} collections={this.state.collections} products={this.state.products} />} />
         </div>
-        <Cart
-          checkout={this.state.checkout}
-          isCartOpen={this.state.isCartOpen}
-          toggleCart={this.handleCartToggle}
-          updateQuantityInCart={this.updateQuantityInCart}
-          removeLineItemInCart={this.removeLineItemInCart}
-        />
+        <Cart checkout={this.state.checkout} isCartOpen={this.state.isCartOpen} toggleCart={this.handleCartToggle} updateQuantityInCart={this.updateQuantityInCart} removeLineItemInCart={this.removeLineItemInCart} />
         <Instagram />
         <Footer />
       </div>

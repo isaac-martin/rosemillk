@@ -32,7 +32,7 @@ class CollectionArchive extends Component {
       });
       // products = 'collection';
     } else {
-      products = <Loader/>;
+      products = <Loader />;
     }
 
     return (
