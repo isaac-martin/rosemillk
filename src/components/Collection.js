@@ -11,6 +11,29 @@ const getCollection = (collections, handle) => {
   return collection;
 };
 
+
+const renderProducts = (collections, products, handle, client) => {
+  if (handle === 'all-products'){
+    const filteredProducts = products.filter(prod => prod.productType !== 'Commission')
+    return filteredProducts.map(product => {
+      return <Product client={client} key={product.id.toString()} product={product} />;
+    });
+   
+  }
+  if (collections.length) {
+    const collection = getCollection(collections, handle);
+
+    return  collection.products.map(product => {
+      return <Product client={client} key={product.id.toString()} product={product} />;
+    });
+
+  } 
+
+  else {
+    return <Loader />;
+  }
+}
+
 class CollectionArchive extends Component {
   constructor() {
     super();
@@ -24,20 +47,14 @@ class CollectionArchive extends Component {
   }
 
   render() {
-    let products;
-    if (this.props.collections.length) {
-      const collection = getCollection(this.props.collections, this.props.match.params.handle || 'all-products');
-      products = collection.products.map(product => {
-        return <Product client={this.props.client} key={product.id.toString()} product={product} />;
-      });
-      // products = 'collection';
-    } else {
-      products = <Loader />;
-    }
+    const collections = this.props.collections
+    const products = this.props.products
+    const handle = this.props.match.params.handle 
+    const client = this.props.client
 
     return (
       <CSSTransition in={true} appear={true} timeout={1000} classNames="fade">
-        <div className="Product-wrapper">{products}</div>
+        <div className="Product-wrapper">{renderProducts(collections, products, handle, client)}</div>
       </CSSTransition>
     );
   }
