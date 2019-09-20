@@ -66,13 +66,13 @@ class SingleProduct extends Component {
             {product.images.length > 1 && (
               <div className="thumbnails">
                 {product.images.map((image, index) => {
-                  return <img data-thumb={`image-${index}`} alt={image.altText} src={image.src} className={`thumbImage t-${index}`} onClick={e => this.changeImage(e)} />;
+                  return <img loading="lazy" data-thumb={`image-${index}`} alt={image.altText} src={image.src} className={`thumbImage t-${index}`} onClick={e => this.changeImage(e)} />;
                 })}
               </div>
             )}
             <div className="images">
               {product.images.map((image, index) => {
-                return <img id={`image-${index}`} alt={image.altText} src={image.src} className={` t-${index}`} onClick={e => this.changeImage(e)} />;
+                return <img loading="lazy" id={`image-${index}`} alt={image.altText} src={image.src} className={` t-${index}`} onClick={e => this.changeImage(e)} />;
               })}
             </div>
           </div>
@@ -81,7 +81,6 @@ class SingleProduct extends Component {
             <div dangerouslySetInnerHTML={{__html: product.attrs.descriptionHtml.value}} />
 
             <p className="prodPrice">{product.attrs.variants[0].price}</p>
-
 
             {product.variants[0].available ? (
               <button className="Product__buy button" onClick={() => this.addVariantToCart(product.variants[0].id)}>
