@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Select from 'react-select';
 import {bodyCol} from '../util.js';
 import Loader from './Loader.js';
 import {CSSTransition} from 'react-transition-group';
@@ -15,7 +16,10 @@ class SingleProduct extends Component {
     super();
 
     this.state = {
-      product: []
+      product: {},
+      variants: [],
+      selectedVariant: {},
+      selectedOption: null
     };
     this.addVariantToCart = this.addVariantToCart.bind(this);
   }
@@ -23,8 +27,13 @@ class SingleProduct extends Component {
   componentDidMount() {
     bodyCol(this.props.oldClass);
     if (this.props.products) {
+      const product = getSingleProduct(this.props.products, this.props.match.params.handle);
       this.setState({
-        product: getSingleProduct(this.props.products, this.props.match.params.handle)
+        product,
+        variants: product ? product.variants : [],
+        selectedVariant: product ? product.variants[0] : {},
+        selectedOption: product ? this.buildOptions(product.variants)[0] : null,
+        options: product ? this.buildOptions(product.variants) : []
       });
     }
   }
@@ -32,8 +41,13 @@ class SingleProduct extends Component {
   componentDidUpdate(prevProps) {
     // Typical usage (don't forget to compare props):
     if (this.props.products !== prevProps.products) {
+      const product = getSingleProduct(this.props.products, this.props.match.params.handle);
       this.setState({
-        product: getSingleProduct(this.props.products, this.props.match.params.handle)
+        product,
+        variants: product ? product.variants : [],
+        selectedVariant: product ? product.variants[0] : {},
+        selectedOption: product ? this.buildOptions(product.variants)[0] : null,
+        options: product ? this.buildOptions(product.variants) : []
       });
     }
   }
@@ -47,18 +61,86 @@ class SingleProduct extends Component {
     });
   }
 
-  changeImage = e => {
-    const id = e.target.dataset.thumb;
+  changeImage = id => {
     const element = document.getElementById(id);
     const y = element.getBoundingClientRect().top + window.scrollY - 90;
     window.scroll({
       top: y,
       behavior: 'smooth'
     });
+
+    this.changeVariantFromImage(id);
+  };
+
+  buildOptions = variants => variants.map((variant, index) => ({value: variant.id, label: `${variant.title} - $${variant.price}`, index: index, imageId: variant.image.id}));
+
+  handleChange = selectedOption => {
+    this.changeImage(selectedOption.imageId);
+  };
+
+  setVariant = selectedOption => {
+    this.setState({selectedOption, selectedVariant: this.state.variants[selectedOption.index]});
+  };
+
+  changeVariantFromImage = id => {
+    const options = this.state.options;
+    const option = options.find(option => option.imageId === id);
+    this.setVariant(option ? option : options[0]);
+  };
+
+  getPriceRange = variants => {
+    const prices = variants.map(variant => parseFloat(variant.price));
+    if (variants.length === 1) {
+      return `$${prices[0]}`;
+    }
+    const max = Math.max(...prices);
+    const min = Math.min(...prices);
+
+    return `$${min} - $${max}`;
   };
 
   render() {
-    const product = this.state.product;
+    const customStyles = {
+      control: provided => ({
+        ...provided,
+        background: 'none',
+        borderColor: 'white',
+        '&:hover': {
+          borderColor: 'white'
+        }
+      }),
+      option: (provided, state) => ({
+        ...provided,
+        background: 'none',
+        color: 'black',
+        padding: 20
+      }),
+      indicatorsContainer: provided => ({
+        ...provided,
+        color: 'white',
+        '&:hover': {
+          color: 'white'
+        }
+      }),
+      indicatorContainer: provided => ({
+        ...provided,
+        color: 'white',
+        '&:hover': {
+          color: 'white'
+        }
+      }),
+      indicatorSeparator: () => {},
+      dropdownIndicator: provided => ({
+        ...provided,
+        color: 'white' // your changes to the arrow
+      }),
+      singleValue: (provided, state) => {
+        return {...provided, color: 'white'};
+      }
+    };
+
+    const {product, variants, selectedVariant, selectedOption, options} = this.state;
+
     return product && product.attrs ? (
       <CSSTransition in={true} appear={true} timeout={1000} classNames="fade">
         <div className="ProductView">
@@ -66,13 +148,13 @@ class SingleProduct extends Component {
             {product.images.length > 1 && (
               <div className="thumbnails">
                 {product.images.map((image, index) => {
-                  return <img loading="lazy" data-thumb={`image-${index}`} alt={image.altText} src={image.src} className={`thumbImage t-${index}`} onClick={e => this.changeImage(e)} />;
+                  return <img loading="lazy" data-thumb={image.id} alt={image.altText} src={image.src} className={`thumbImage t-${index}`} onClick={e => this.changeImage(e.target.dataset.thumb)} />;
                 })}
               </div>
             )}
             <div className="images">
               {product.images.map((image, index) => {
-                return <img loading="lazy" id={`image-${index}`} alt={image.altText} src={image.src} className={` t-${index}`} onClick={e => this.changeImage(e)} />;
+                return <img loading="lazy" id={image.id} alt={image.altText} src={image.src} className={`t-${index}`} onClick={e => this.changeVariantFromImage(e.target.id)} />;
               })}
             </div>
           </div>
@@ -80,11 +162,18 @@ class SingleProduct extends Component {
             <h2>{product.attrs.title.value}</h2>
             <div dangerouslySetInnerHTML={{__html: product.attrs.descriptionHtml.value}} />
 
-            <p className="prodPrice">{product.attrs.variants[0].price}</p>
+            <p className="prodPrice">{this.getPriceRange(variants)}</p>
 
-            {product.variants[0].available ? (
-              <button className="Product__buy button" onClick={() => this.addVariantToCart(product.variants[0].id)}>
-                Add to Cart
+            {variants.length > 1 && (
+              <>
+                <h3>{product.options[0].name}:</h3>
+                <Select styles={customStyles} value={selectedOption} onChange={this.handleChange} options={options} />
+              </>
+            )}
+
+            {selectedVariant.available ? (
+              <button className="Product__buy button" onClick={() => this.addVariantToCart(selectedVariant.id)}>
+                Add to Cart - ${selectedVariant.price}
               </button>
             ) : (
               <h3 className="soldOut">
