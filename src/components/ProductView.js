@@ -101,10 +101,17 @@ class SingleProduct extends Component {
 
   render() {
     const customStyles = {
+      container: provided => ({
+        ...provided,
+        '&:focus': {
+          border: '2px solid'
+        }
+      }),
       control: provided => ({
         ...provided,
         background: 'none',
         borderColor: 'white',
+        boxShadow: 'none',
         '&:hover': {
           borderColor: 'white'
         }
