@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import SVG from 'react-svg';
-import Logo from '.././imgs/rmilk_logo.svg';
+import Logo from '.././imgs/logo.svg';
 import {NavLink} from 'react-router-dom';
 import '.././css/header.scss';
 import CollectionNav from './CollectionNav';
