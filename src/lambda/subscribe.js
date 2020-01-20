@@ -1,24 +1,36 @@
 const axios = require('axios')
 require('dotenv').config()
 
-export function handler(context, callback) {
+export function handler(event, context, callback) {
   const APIKEY = process.env.MAILCHIMP_API_KEY
+  const parsedBody = JSON.parse(event.body)
+  const { email, merge } = parsedBody
+
   if (!APIKEY) {
     console.error('No MailChimp API Key include in environment variables')
     process.exit(1)
   }
-  if (!context.body || !context.body.email) {
-    callback('Missing email parameter')
-    return
+
+  if (!parsedBody || !email) {
+    return callback(null, {
+      statusCode: 400,
+      body: JSON.stringify({ msg: "Missing Email Paramater" }),
+    })
   }
 
-  console.log('isaac')
+  const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
-  const { email } = context.body
+  if (!re.test(email)) {
+    return callback(null, {
+      statusCode: 400,
+      body: JSON.stringify({ msg: "Invalid Email" }),
+    })
+  }
 
-  const regionName = 'us1'
+
+  const regionName = 'us4'
   const apiKey = APIKEY
-  const listId = 'xxxxxxxxxx'
+  const listId = 'fda93b2e0b'
   const url = `https://${regionName}.api.mailchimp.com/3.0/lists/${listId}/members/`
 
   axios
@@ -27,6 +39,9 @@ export function handler(context, callback) {
       {
         status: 'subscribed',
         email_address: email,
+        merge_fields: {
+          ...merge,
+        },
       },
       {
         headers: {
@@ -35,9 +50,21 @@ export function handler(context, callback) {
       }
     )
     .then(() => {
-      callback(null, { message: 'Email subscribed!' })
+      callback(null, {
+        statusCode: 200,
+        body: JSON.stringify({ msg: "Thanks for subscribing!" }),
+      })
     })
-    .catch(error => {
-      callback(error.response.data)
+    .catch(({ response }) => {
+      let title = ""
+      if (response && response.data && response.data.title) {
+        title = response.data.title
+      }
+      callback(null, {
+        statusCode: 500,
+        body: JSON.stringify({
+          msg: `Failed to subscribe. ${title}`,
+        }),
+      })
     })
 }

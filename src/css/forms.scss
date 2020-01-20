@@ -1,0 +1,34 @@
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+
+  label {
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+
+  input {
+    background: none;
+    border: 1px solid white;
+    padding: 10px 15px;
+    color: white;
+    border-radius: 30px;
+    font-size: 14px;
+
+  }
+}
+
+.splitGroup {
+  display: flex;
+  flex-direction: row;
+  @include media-query($small-down) {
+    flex-direction: column;
+  }
+  div {
+    width: 50%;
+    &:first-child {
+      padding-right: 10px;
+    }
+  }
+}
