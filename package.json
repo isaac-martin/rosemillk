@@ -30,7 +30,7 @@
   "scripts": {
     "start": "react-scripts start",
     "start:sec": "HTTPS=true react-scripts start",
-    "build": "yarn build:lambda && build:app",
+    "build": "yarn build:lambda && yarn build:app",
     "build:app": "react-scripts build",
     "build:lambda": "netlify-lambda build src/lambda",
     "test": "react-scripts test --env=jsdom",
