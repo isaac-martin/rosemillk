@@ -6,6 +6,7 @@
 @import 'mq';
 @import 'product';
 @import 'fonts';
+@import 'forms';
 
 
 
@@ -625,18 +626,14 @@ h1 {
   opacity: 0;
 }
 
-
-
-
-
 .mainArea {
   min-height: 85vh;
   max-width: 1200px;
   margin: 0 auto;
-    display: flex;
+  display: flex;
   flex-direction: row;
   justify-content: center;
-      padding: 84px 20px 0;
+  padding: 124px 20px 0;
 }
 
 

@@ -3,7 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.19.1",
+    "dotenv": "^8.2.0",
     "graphql-js-client": "^0.9.2",
+    "netlify-lambda": "^1.6.3",
     "node-sass": "^4.10.0",
     "react": "^16.3.0",
     "react-cookie": "^3.0.4",
@@ -28,9 +31,12 @@
   "scripts": {
     "start": "react-scripts start",
     "start:sec": "HTTPS=true react-scripts start",
-    "build": "react-scripts build",
+    "build": "yarn build:lambda && yarn build:app",
+    "build:app": "react-scripts build",
+    "build:lambda": "netlify-lambda build src/lambda",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "dev": "npx --node-arg=--inspect netlify dev"
   },
   "browserslist": [
     ">0.2%",
