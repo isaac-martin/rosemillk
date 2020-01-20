@@ -73,7 +73,7 @@ const Newsletter = () => {
       </div>
       </div>
       {status && <p>{msg}</p>}
-      <button className="Product__buy button" type="submit">Submit</button>
+      <button className="Product__buy button" type="submit">Sign Up</button>
     </form>
 
 </>
