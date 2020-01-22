@@ -23,7 +23,7 @@ class Product extends Component {
     return (
       <LazyLoad offset={[-200, 0]} placeholder={<Loader />}>
         <div className={available ? `Product` : `Product isSoldOut`}>
-          <Link to={`/product/${product.handle}`}>
+          <Link to={`/products/${product.handle}`}>
             {product.images.length ? <img loading="lazy" src={variantImage.src} alt={`${product.title} product shot`} /> : null}
             <h5 className="Product__title">{product.title}</h5>
             <span className="Product__price">${variant.price}</span>
