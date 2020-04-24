@@ -17,8 +17,6 @@ class Cart extends Component {
       return <LineItem updateQuantityInCart={this.props.updateQuantityInCart} removeLineItemInCart={this.props.removeLineItemInCart} key={line_item.id.toString()} line_item={line_item} />;
     });
 
-    const subtotalPrice = this.props.checkout.subtotalPrice;
-    const shippingLeft = 75.0 - subtotalPrice;
 
     return (
       <div className={`Cart ${this.props.isCartOpen ? 'Cart--open' : ''}`}>
@@ -30,9 +28,6 @@ class Cart extends Component {
           </button>
         </header>
         <ul className="Cart__line-items">{line_items}</ul>
-        <div className="Cart-info clearfix">
-          <span className="pricing">{shippingLeft >= 1 ? `Orders over $75 ship free. Spend $${shippingLeft} more to qualify.` : 'Your order has qualified for free shipping.'}</span>
-        </div>
         <footer className="Cart__footer">
           <div className="Cart-info clearfix">
             <div className="Cart-info__total Cart-info__small">Subtotal</div>
