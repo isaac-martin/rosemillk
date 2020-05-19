@@ -36,6 +36,9 @@ class Cart extends Component {
             </div>
           </div>
           <div className="Cart-info clearfix">
+            <div className="Cart-info__total Cart-info__small">Due to COVID-19 I am only dropping packages off once a week + shipping may be delayed outside of my control</div>
+          </div>
+          <div className="Cart-info clearfix">
             <div className="Cart-info__total Cart-info__small">Taxes calculated at checkout if applicable</div>
           </div>
           <button className="Cart__checkout button" onClick={this.openCheckout}>
