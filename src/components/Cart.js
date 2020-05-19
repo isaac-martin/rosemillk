@@ -28,15 +28,15 @@ class Cart extends Component {
           </button>
         </header>
         <ul className="Cart__line-items">{line_items}</ul>
+        <div className="Cart-info clearfix">
+            <div className="covid">Due to COVID-19 I am only dropping packages off once a week + shipping may be delayed outside of my control</div>
+          </div>
         <footer className="Cart__footer">
           <div className="Cart-info clearfix">
             <div className="Cart-info__total Cart-info__small">Subtotal</div>
             <div className="Cart-info__pricing">
               <span className="pricing">$ {this.props.checkout.subtotalPrice}</span>
             </div>
-          </div>
-          <div className="Cart-info clearfix">
-            <div className="Cart-info__total Cart-info__small">Due to COVID-19 I am only dropping packages off once a week + shipping may be delayed outside of my control</div>
           </div>
           <div className="Cart-info clearfix">
             <div className="Cart-info__total Cart-info__small">Taxes calculated at checkout if applicable</div>
